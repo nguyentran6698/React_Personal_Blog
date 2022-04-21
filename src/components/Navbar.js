@@ -58,7 +58,7 @@ const SideBarWrapper = styled.section`
   }
 `;
 const Wrapper = styled.nav`
-  width: 100vw;
+  width: 100%;
   display: flex;
   padding: 0.75rem 1rem;
   justify-content: space-between;
@@ -110,7 +110,6 @@ const Wrapper = styled.nav`
   }
   @media ${devices.tablet} {
     max-width: 1300px;
-    padding: 0.75rem 2rem;
   }
   @media ${devices.laptop} {
     .col-1 {

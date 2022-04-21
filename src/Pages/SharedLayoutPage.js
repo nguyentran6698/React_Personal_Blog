@@ -13,8 +13,5 @@ const SharedLayoutPage = () => {
     </>
   );
 };
-const Wrapper = styled.section`
-  max-width: 1300px;
-  margin: 0 auto;
-`;
+const Wrapper = styled.section``;
 export default SharedLayoutPage;
