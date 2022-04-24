@@ -121,7 +121,7 @@ const Wrapper = styled.nav`
     }
   }
   @media ${devices.tablet} {
-    max-width: 1300px;
+    max-width: 1450px;
   }
   @media ${devices.laptop} {
     .col-1 {

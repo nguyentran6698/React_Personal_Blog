@@ -10,10 +10,6 @@ const Header = () => {
       <div className="header-wrapper">
         <div className="header-content">
           <div className="heading">
-            {/* <p>
-              All you need in this life is ignorance and confidence, and then
-              success is sure. - Mark Twain
-            </p> */}
             <h2>welcome to my personal blog</h2>
           </div>
           <p>
@@ -40,13 +36,13 @@ const Header = () => {
 };
 const Wrapper = styled.section`
   padding: 2rem 1.5rem;
-  padding-top: 3rem;
   background: var(--primary-300);
   .header-wrapper {
     max-width: 1300px;
     margin: 0 auto;
     display: grid;
     .header-content {
+      margin-top: 3rem;
       align-self: center;
       font-size: 1.1rem;
       .heading {
@@ -64,6 +60,9 @@ const Wrapper = styled.section`
         column-gap: 1.2rem;
       }
     }
+    .header-img {
+      display: none;
+    }
   }
   @media ${devices.tablet} {
     padding: 2rem 1.5rem;
@@ -76,6 +75,9 @@ const Wrapper = styled.section`
         p {
           max-width: 550px;
         }
+      }
+      .header-img {
+        display: inherit;
       }
     }
   }

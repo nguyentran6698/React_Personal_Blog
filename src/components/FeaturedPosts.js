@@ -1,21 +1,30 @@
-import React, { useState } from "react";
-import SinglePostComponent from "../components/Post";
+import React, { useState, useRef } from "react";
+import SinglePostComponent from "./Post";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import styled from "styled-components";
-import { devices } from "../styled-components/size";
-const SignlePost = () => {
+import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
+const FeaturedPosts = () => {
+  const sliderRef = useRef();
+
   return (
     <Wrapper>
+      <div className="title">
+        <h3>Featured Posts</h3>
+        <div className="btn-control">
+          <GrFormPreviousLink onClick={() => sliderRef.current.slickPrev()} />
+          <GrFormNextLink onClick={() => sliderRef.current.slickNext()} />
+        </div>
+      </div>
       <Slider
+        ref={sliderRef}
         infinite={true}
         speed={500}
         slidesToShow={1}
         slidesToScroll={1}
         autoplay={true}
         autoplaySpeed={3000}
-        className="featured-section"
         draggable={false}
         responsive={[
           {
@@ -79,8 +88,19 @@ const Wrapper = styled.section`
   .slick-slide {
     padding-left: 1rem;
   }
+  .title {
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary-700);
+    .btn-control {
+      align-self: center;
+      padding-top: 3rem;
+      font-size: 1.7rem;
+      cursor: pointer;
+    }
+  }
 `;
-export default SignlePost;
+export default FeaturedPosts;
 
 //   .featured-posts {
 //     display: grid;
