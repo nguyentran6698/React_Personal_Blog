@@ -9,6 +9,7 @@ const Blogs = () => {
       <div className="title">
         <h3>All Posts</h3>
       </div>
+      <div className="blogs-container"></div>
     </Wrapper>
   );
 };
