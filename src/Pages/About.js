@@ -22,18 +22,12 @@ const About = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
               perferendis nemo perspiciatis ipsum qui libero labore tempore ut
               maxime repellat molestias obcaecati officia, eos pariatur illum
+            </p>
+            <p>
               optio quibusdam quidem vel quos veritatis omnis, nam aliquid
               ducimus suscipit. Cumque nobis, ducimus non at suscipit
               aspernatur. Provident quibusdam et id consequuntur magnam.
             </p>
-            <div className="btn-container">
-              <Button>
-                <Link to="/contact">Contact Me</Link>
-              </Button>
-              <Button>
-                <Link to="/blogs">Read Blog</Link>
-              </Button>
-            </div>
           </div>
         </article>
         <article className="about-me-2 wrapper">
@@ -43,9 +37,9 @@ const About = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
               perferendis nemo perspiciatis ipsum qui libero labore tempore ut
               maxime repellat molestias obcaecati officia, eos pariatur illum
-              optio quibusdam quidem vel quos veritatis omnis, nam aliquid
-              ducimus suscipit. Cumque nobis, ducimus non at suscipit
-              aspernatur. Provident quibusdam et id consequuntur magnam.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
+              perferendis nemo perspiciatis ipsum qui libero labore tempore ut
+              maxime repellat molestias obcaecati officia, eos pariatur illum
             </p>
           </div>
           <div className="img-container">
@@ -73,8 +67,8 @@ const Wrapper = styled.section`
     .wrapper {
       display: flex;
       justify-content: center;
+      align-content: center;
       flex-wrap: wrap;
-      column-gap: 2.5rem;
       margin-top: 4.5rem;
     }
 
@@ -94,7 +88,7 @@ const Wrapper = styled.section`
         max-width: 90%;
       }
       p {
-        max-width: 550px;
+        max-width: 580px;
       }
     }
     .btn-container {
@@ -105,13 +99,13 @@ const Wrapper = styled.section`
   }
 
   @media ${devices.tabletL} {
-    .about-me-wrapper {
+    /* .about-me-wrapper {
       display: grid;
       justify-content: center;
       .wrapper {
         flex-wrap: nowrap;
       }
-    }
+    } */
   }
   @media ${devices.laptop} {
     .about-me-wrapper {

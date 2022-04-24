@@ -1,5 +1,5 @@
-import imgSrc from "./img/testPic/pic_2.jpeg";
-const blogs = [
+// import imgSrc from "./img/testPic/pic_2.jpeg";
+export const blogSample = [
   {
     id: 1,
     title: "what do you think about computer science",

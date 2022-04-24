@@ -35,14 +35,13 @@ const Header = () => {
   );
 };
 const Wrapper = styled.section`
-  padding: 2rem 1.5rem;
+  padding: 3rem 1.5rem;
   background: var(--primary-300);
   .header-wrapper {
     max-width: 1300px;
     margin: 0 auto;
     display: grid;
     .header-content {
-      margin-top: 3rem;
       align-self: center;
       font-size: 1.1rem;
       .heading {

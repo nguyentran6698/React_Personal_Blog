@@ -28,7 +28,7 @@ const FeaturedPosts = () => {
         draggable={false}
         responsive={[
           {
-            breakpoint: 2200,
+            breakpoint: Number.MAX_SAFE_INTEGER,
             settings: {
               slidesToShow: 4,
               slidesToScroll: 1,
@@ -86,7 +86,7 @@ const FeaturedPosts = () => {
 };
 const Wrapper = styled.section`
   .slick-slide {
-    padding-left: 1rem;
+    padding-left: 1.3rem;
   }
   .title {
     display: flex;

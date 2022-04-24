@@ -1,13 +1,16 @@
-import React, { useContext,useEffect } from "react";
-
-const context = () => {
-  const intialState = {
-      
-  }
-  
-  return <AppProvider>context</AppProvider>;
+import React, { useContext, useState } from "react";
+import useFetch from "./customHook/useFetch";
+const AppContext = React.createContext();
+const AppProvider = ({ children }) => {
+  const [query, setQuery] = useState("");
+  const { loading, error, blogs } = useFetch(query);
+  return (
+    <AppContext.Provider value={{ loading, error, blogs, query, setQuery }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
-const useGlobalContext=()=>{
-    return useContext.
-}
-export default context;
+export const useGlobalContext = () => {
+  return useContext(AppContext);
+};
+export { AppProvider };

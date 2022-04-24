@@ -9,7 +9,6 @@ import { FaBars } from "react-icons/fa";
 import { socialLinks, links } from "../styled-components/links";
 const Navbar = () => {
   const [sidebar, setSideBar] = useState(false);
-
   const toggleSidebar = () => {
     setSideBar(!sidebar);
   };

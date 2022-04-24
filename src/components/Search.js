@@ -2,12 +2,12 @@ import { AiOutlineSearch } from "react-icons/ai";
 import styled from "styled-components";
 import React from "react";
 import { IoMdClose } from "react-icons/io";
+import { useGlobalContext } from "../context";
 const Search = () => {
-  const [context, searchContext] = React.useState("");
+  const { query, setQuery } = useGlobalContext();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(context);
-    searchContext("");
+    setQuery("");
   };
   return (
     <Wrapper>
@@ -15,12 +15,12 @@ const Search = () => {
         <AiOutlineSearch className="icon" />
         <input
           type="text"
-          value={context}
-          onChange={(e) => searchContext(e.target.value)}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="Search..."
         />
-        {context && (
-          <IoMdClose onClick={() => searchContext("")} className="close-btn" />
+        {query && (
+          <IoMdClose onClick={() => setQuery("")} className="close-btn" />
         )}
       </form>
     </Wrapper>
