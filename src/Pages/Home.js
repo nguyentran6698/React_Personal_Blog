@@ -22,8 +22,6 @@ const Wrapper = styled.section`
     max-width: 1300px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
-    .featured-section {
-    }
   }
   @media ${devices.laptopL} {
     .home {
