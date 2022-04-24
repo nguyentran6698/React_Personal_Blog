@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import SinglePostComponent from "./Post";
+import SinglePostComponent from "./FeaturedPost";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -21,8 +21,6 @@ const FeaturedPosts = () => {
         ref={sliderRef}
         infinite={true}
         speed={500}
-        slidesToShow={1}
-        slidesToScroll={1}
         autoplay={true}
         autoplaySpeed={3000}
         draggable={false}
@@ -37,10 +35,18 @@ const FeaturedPosts = () => {
           {
             breakpoint: 1500,
             settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 1300,
+            settings: {
               slidesToShow: 3,
               slidesToScroll: 1,
             },
           },
+
           {
             breakpoint: 1024,
             settings: {
@@ -48,19 +54,13 @@ const FeaturedPosts = () => {
               slidesToScroll: 1,
             },
           },
+
           {
-            breakpoint: 600,
+            breakpoint: 700,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
               initialSlide: 1,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
             },
           },
         ]}
@@ -86,7 +86,7 @@ const FeaturedPosts = () => {
 };
 const Wrapper = styled.section`
   .slick-slide {
-    padding-left: 1.3rem;
+    padding-right: 1rem;
   }
   .title {
     display: flex;
@@ -101,15 +101,3 @@ const Wrapper = styled.section`
   }
 `;
 export default FeaturedPosts;
-
-//   .featured-posts {
-//     display: grid;
-//     @media ${devices.tablet} {
-//       grid-template-columns: 1fr 1fr;
-//       gap: 1rem;
-//     }
-//     @media ${devices.tabletL} {
-//       grid-template-columns: 1fr 1fr 1fr 1fr;
-//       gap: 1rem;
-//     }
-//   }

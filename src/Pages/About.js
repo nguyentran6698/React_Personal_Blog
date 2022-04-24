@@ -51,11 +51,9 @@ const About = () => {
   );
 };
 const Wrapper = styled.section`
-  padding: 2rem 3rem;
-  max-width: 1450px;
   margin: 0 auto;
-
   .title {
+    margin-bottom: 3.5rem;
     text-align: center;
     text-transform: uppercase;
     color: var(--primary-700);
@@ -65,50 +63,40 @@ const Wrapper = styled.section`
   }
   .about-me-wrapper {
     .wrapper {
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      flex-wrap: wrap;
-      margin-top: 4.5rem;
+      display: grid;
+      padding: 2rem 1.375rem;
     }
-
-    /* This is for ABOUT-ME-CONTENT */
     .img-container {
       width: 100%;
-      max-width: 450px;
-      img {
-        width: 100%;
-      }
+      height: 100%;
+      max-width: 570px;
+      align-self: end;
     }
     .about-me-content {
+      margin-bottom: 1.5rem;
       h3 {
-        margin-bottom: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 2.5rem;
         letter-spacing: 0.1rem;
         color: var(--primary-700);
         max-width: 90%;
       }
       p {
         max-width: 580px;
+        font-size: 1.2rem;
       }
-    }
-    .btn-container {
-      margin-top: 2rem;
-      display: flex;
-      column-gap: 1.5rem;
     }
   }
 
-  @media ${devices.tabletL} {
-    /* .about-me-wrapper {
-      display: grid;
-      justify-content: center;
-      .wrapper {
-        flex-wrap: nowrap;
-      }
-    } */
-  }
   @media ${devices.laptop} {
-    .about-me-wrapper {
+    .wrapper {
+      padding: 2rem 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      .about-me-content {
+        margin-bottom: 0;
+      }
     }
   }
 `;

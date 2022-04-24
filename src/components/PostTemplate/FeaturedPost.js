@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import postPic from "../img/testPic/pic_2.jpeg";
+import postPic from "../../img/testPic/pic_2.jpeg";
 import styled from "styled-components";
 import { FaRegComment } from "react-icons/fa";
 import { AiOutlineLike, AiTwotoneLike } from "react-icons/ai";
-const Post = () => {
+const FeaturedPost = () => {
   const [comments, setComment] = React.useState(10);
   const [like, setLike] = React.useState(false);
   const [nb_like, setNumberLike] = React.useState(5);
@@ -29,9 +29,7 @@ const Post = () => {
         <h4 className="blog-title">How to learn different language ?</h4>
         <p className="blog-intro">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-          assumenda magnam, repudiandae molestiae, sequi repellat ab ut tempore
-          ex alias eligendi et, qui quo eaque voluptatibus? Ducimus esse officia
-          ut?...
+          assumenda magnam, repudiandae molestiae, sequi repellat ab...
         </p>
         <div className="icons-container">
           <p>
@@ -80,6 +78,7 @@ const Wrapper = styled.article`
     .blog-intro {
       padding-right: 0.5rem;
       font-size: 0.85rem;
+      color: var(--grey-clr);
     }
   }
   .icons-container {
@@ -116,4 +115,4 @@ const Wrapper = styled.article`
     outline: 2px solid var(--secondary-800);
   }
 `;
-export default Post;
+export default FeaturedPost;

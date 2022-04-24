@@ -32,7 +32,7 @@ const SlidePic = () => {
 };
 const Wrapper = styled.div`
   .img-container {
-    max-height: 350px;
+    max-height: 450px;
   }
 `;
 export default SlidePic;
