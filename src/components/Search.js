@@ -26,13 +26,12 @@ const Search = () => {
     </Wrapper>
   );
 };
-
 const Wrapper = styled.section`
   border: 0.1px double var(--grey-clr);
   form {
     display: flex;
     padding: 0.5rem;
-    justify-contents: center;
+    justify-content: center;
     align-items: center;
     column-gap: 0.5rem;
     color: var(--grey-clr);

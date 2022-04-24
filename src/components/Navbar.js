@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LogoImg from "../img/logo-crop.png";
 import Search from "../components/Search";
 import { devices } from "../styled-components/size";
@@ -27,7 +27,18 @@ const Navbar = () => {
             {links.map((link, id) => {
               return (
                 <li className="link" key={id}>
-                  <Link to={`${link.refLink}`}>{link.linkTitle}</Link>
+                  <NavLink
+                    style={({ isActive }) => {
+                      return {
+                        color: isActive
+                          ? "var(--primary-800)"
+                          : "var(--primary-600)",
+                      };
+                    }}
+                    to={`${link.refLink}`}
+                  >
+                    {link.linkTitle}
+                  </NavLink>
                 </li>
               );
             })}
@@ -80,6 +91,7 @@ const Wrapper = styled.nav`
 
       a {
         color: var(--primary-600);
+        font-weight: 700;
       }
     }
   }

@@ -38,7 +38,7 @@ const About = () => {
         </article>
         <article className="about-me-2 wrapper">
           <div className="about-me-content">
-            <h3>Hi! Have we ever meet ?</h3>
+            <h3>What career that you want to follow ?</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
               perferendis nemo perspiciatis ipsum qui libero labore tempore ut
@@ -74,8 +74,8 @@ const Wrapper = styled.section`
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      column-gap: 5rem;
-      margin-bottom: 3rem;
+      column-gap: 2.5rem;
+      margin-top: 4.5rem;
     }
 
     /* This is for ABOUT-ME-CONTENT */
@@ -88,8 +88,10 @@ const Wrapper = styled.section`
     }
     .about-me-content {
       h3 {
+        margin-bottom: 1.5rem;
         letter-spacing: 0.1rem;
         color: var(--primary-700);
+        max-width: 90%;
       }
       p {
         max-width: 550px;
