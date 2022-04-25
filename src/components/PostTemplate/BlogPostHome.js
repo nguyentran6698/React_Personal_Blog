@@ -11,7 +11,7 @@ const BlogPostHome = () => {
     return;
   }
   const leftPosts = blogs.slice(0, 2);
-  const rightPosts = blogs.slice(2);
+  const rightPosts = blogs.slice(2, 5);
   return (
     <Wrapper>
       <div className="title">

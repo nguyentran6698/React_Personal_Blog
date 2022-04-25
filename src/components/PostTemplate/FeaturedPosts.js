@@ -5,9 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import styled from "styled-components";
 import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
+import { useGlobalContext } from "../../context";
 const FeaturedPosts = () => {
   const sliderRef = useRef();
-
+  const { blogs } = useGlobalContext();
+  const featuredBlogs = blogs.filter((blog) => blog.featured === true);
   return (
     <Wrapper>
       <div className="title">
@@ -65,21 +67,13 @@ const FeaturedPosts = () => {
           },
         ]}
       >
-        <div>
-          <SinglePostComponent />
-        </div>
-        <div>
-          <SinglePostComponent />
-        </div>
-        <div>
-          <SinglePostComponent />
-        </div>
-        <div>
-          <SinglePostComponent />
-        </div>
-        <div>
-          <SinglePostComponent />
-        </div>
+        {featuredBlogs.map((blog, id) => {
+          return (
+            <div key={id}>
+              <SinglePostComponent blog={blog} />
+            </div>
+          );
+        })}
       </Slider>
     </Wrapper>
   );

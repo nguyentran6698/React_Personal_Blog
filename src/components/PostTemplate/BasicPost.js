@@ -6,23 +6,7 @@ import { Link } from "react-router-dom";
 import imgSrc from "../../img/testPic/pic_4.jpeg";
 import { devices } from "../../styled-components/size";
 const BasicPost = ({ post, left }) => {
-  const {
-    title,
-    img,
-    post_content,
-    id,
-    comments: { nb_comment },
-    nb_likes,
-  } = post;
-  const [like, setLike] = React.useState(false);
-  const handleClick = () => {
-    setLike(!like);
-    if (!like) {
-      console.log("increase like");
-    } else {
-      console.log("decrease like");
-    }
-  };
+  const { title, public_date: date, img, post_content, id } = post;
   return (
     <Wrapper>
       <div className="post-container">
@@ -31,26 +15,10 @@ const BasicPost = ({ post, left }) => {
             <img src={imgSrc} alt="" className="img" />
           </div>
         )}
-
         <div className="content-container">
+          <p>{date}</p>
           <h3>{title}</h3>
           <p>{`${post_content.slice(0, 70)}...`}</p>
-          <div className="icons-container">
-            <p>
-              <FaRegComment className="icon" />
-              {nb_comment}
-            </p>
-            <p>
-              <button className="like-btn" onClick={handleClick}>
-                {like ? (
-                  <AiTwotoneLike className="icon" />
-                ) : (
-                  <AiOutlineLike className="icon" />
-                )}
-              </button>
-              <span>{nb_likes}</span>
-            </p>
-          </div>
           <Link to={`/blogs/${id}`} className="read-btn">
             Read More
           </Link>
@@ -94,27 +62,6 @@ const Wrapper = styled.article`
         margin-bottom: 0.375rem;
         max-width: 250px;
         color: var(--grey-clr);
-      }
-      .icons-container {
-        display: flex;
-        column-gap: 1.2rem;
-        .like-btn {
-          background: transparent;
-          border: none;
-          cursor: pointer;
-        }
-        text-align: baseline;
-        p {
-          display: flex;
-          column-gap: 0.25rem;
-          align-items: center;
-        }
-        .icon {
-          font-size: 1rem;
-        }
-        span {
-          font-size: 0.75rem;
-        }
       }
       .read-btn {
         font-size: 0.85rem;
