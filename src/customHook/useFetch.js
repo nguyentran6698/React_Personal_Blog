@@ -4,7 +4,6 @@ const useFetch = (urlParams) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState({ show: false, msg: "" });
   const [blogs, setBlogs] = useState([]);
-  console.log(blogSample);
   const fetchBlogs = async (url) => {
     setBlogs(blogSample);
   };

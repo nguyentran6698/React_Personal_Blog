@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { FaRegComment } from "react-icons/fa";
-import { AiOutlineLike, AiTwotoneLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import imgSrc from "../../img/testPic/pic_4.jpeg";
+import imgSrc from "../../img/testPic/pic_5.jpeg";
 import { devices } from "../../styled-components/size";
-const BasicPost = ({ post, left }) => {
+const BasicPost = ({ post, left, header }) => {
   const { title, public_date: date, img, post_content, id } = post;
   return (
     <Wrapper>
@@ -18,7 +16,7 @@ const BasicPost = ({ post, left }) => {
         <div className="content-container">
           <p>{date}</p>
           <h3>{title}</h3>
-          <p>{`${post_content.slice(0, 70)}...`}</p>
+          <p>{`${post_content.slice(0, 85)}...`}</p>
           <Link to={`/blogs/${id}`} className="read-btn">
             Read More
           </Link>
@@ -34,7 +32,7 @@ const Wrapper = styled.article`
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     .img-container {
-      height: 170px;
+      max-height: 200px;
       border-radius: var(--borderRadius);
       box-shadow: var(--box-normal-shadow);
       transition: var(--fast-transition);
@@ -76,10 +74,9 @@ const Wrapper = styled.article`
   }
   @media ${devices.tabletM} {
     .post-container {
-      display: block;
+      grid-template-columns: 1fr;
       margin-bottom: 1.5rem;
       .img-container {
-        height: 270px;
         margin-bottom: 1.2rem;
       }
     }

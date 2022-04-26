@@ -53,9 +53,6 @@ const Wrapper = styled.section`
     }
   }
   .newPostLeft {
-    // display: flex;
-    // flex-wrap: wrap;
-    // row-gap: 2.5rem;
     display: grid;
     row-gap: 2.5rem;
   }
@@ -65,7 +62,7 @@ const Wrapper = styled.section`
   @media ${devices.tabletM} {
     .post-wrapper {
       display: grid;
-      grid-template-columns: 1fr 350px;
+      grid-template-columns: 1fr 500px;
       column-gap: 2rem;
     }
     .newPostLeft {
