@@ -6,9 +6,13 @@ import Slider from "react-slick";
 import styled from "styled-components";
 import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 import { useGlobalContext } from "../../context";
+import Loading from "../Loading";
 const FeaturedPosts = () => {
   const sliderRef = useRef();
-  const { blogs } = useGlobalContext();
+  const { blogs, loading } = useGlobalContext();
+  if (loading) {
+    return <Loading />;
+  }
   const featuredBlogs = blogs.filter((blog) => blog.featured === true);
   return (
     <Wrapper>

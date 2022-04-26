@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../context";
 import Loading from "../components/Loading";
 import BasicPost from "../components/PostTemplate/BasicPost";
 import { devices } from "../styled-components/size";
 const Blogs = () => {
-  const { loading, blogs } = useGlobalContext();
-
-  const newestPost = blogs.shift();
-  if (!newestPost) {
+  const { loading, blogs, setQuery } = useGlobalContext();
+  if (loading) {
     return <Loading />;
   }
+
+  const newestPost = blogs[0];
+  const newBlogs = blogs.slice(1);
+
   return (
     <Wrapper>
       <div className="blogs-container">
@@ -18,7 +20,7 @@ const Blogs = () => {
           <BasicPost post={newestPost} left={true} />
         </div>
         <div className="blog-post-section">
-          {blogs.map((blog, id) => {
+          {newBlogs.map((blog, id) => {
             return <BasicPost post={blog} key={id} left={true} />;
           })}
         </div>
@@ -34,6 +36,7 @@ const Wrapper = styled.section`
     .blog-header {
       margin: 2rem 0 3.5rem 0;
       .post-container {
+        column-gap:1.2rem;
         grid-template-columns: 1fr;
       }
       .img-container {

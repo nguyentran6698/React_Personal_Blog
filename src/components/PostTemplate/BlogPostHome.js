@@ -3,10 +3,13 @@ import styled from "styled-components";
 import { useGlobalContext } from "../../context";
 import BasicPost from "./BasicPost";
 import { devices } from "../../styled-components/size";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loading from "../Loading";
 const BlogPostHome = () => {
   const { blogs, loading } = useGlobalContext();
-  // I want to have at least total 4 posts to implement this components
+  if (loading) {
+    return <Loading />;
+  }
   if (blogs.length < 1) {
     return;
   }

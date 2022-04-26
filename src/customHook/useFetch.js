@@ -5,10 +5,15 @@ const useFetch = (urlParams) => {
   const [error, setError] = useState({ show: false, msg: "" });
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async (url) => {
-    setBlogs(blogSample);
+    try {
+      setBlogs(blogSample);
+    } catch (err) {
+      setError({ show: true, msg: err.message });
+    }
+    setLoading(false);
   };
   useEffect(() => {
-    fetchBlogs("customEndPoint");
+    fetchBlogs(urlParams);
   }, [urlParams]);
   return { loading, error, blogs };
 };

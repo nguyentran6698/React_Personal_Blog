@@ -9,6 +9,7 @@ const SharedLayoutPage = () => {
       <Wrapper>
         <Navbar />
         <Outlet />
+        <Footer />
       </Wrapper>
     </>
   );
