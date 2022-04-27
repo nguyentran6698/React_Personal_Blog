@@ -13,11 +13,14 @@
 :root {
   --primary-100: #fdeff5;
   --primary-200: #fbdfea;
-  --primary-300: #f9d0e0;
+  /* --primary-300: #f9d0e0; */
+  --primary-300: #ffff;
   --primary-400: #f7c0d5;
-  --primary-500: #c48da2;
+  /* --primary-500: #c48da2; */
+  --primary-500: #000000;
   --primary-600: #936a7a;
-  --primary-700: #936a7a;
+  /* --primary-700: #936a7a; */
+  --primary-700: #000000;
   --primary-800: #624651;
   --primary-900: #312329;
   --secondary--100: #f6f9f3;
