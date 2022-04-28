@@ -52,36 +52,7 @@ const BlogEdit = () => {
   };
   return (
     <Wrapper>
-      <div className="text-editor-container">
-        <form action="" className="form">
-          <h2>Write Something Today</h2>
-          <div className="form-control">
-            <label htmlFor="">Title: </label>
-            <input
-              name="title"
-              type="text"
-              value={content.title}
-              id="title"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-
-          <EditMarkDown setContentRender={setContentRender} />
-          <button type="submit" onClick={() => handleSubmit}>
-            Click Me
-          </button>
-        </form>
-        <div className="form-control">
-          <label htmlFor="">Image: </label>
-          <input
-            type="file"
-            value={content.pic}
-            onChange={(e) => handleFile(e)}
-            name="image"
-          ></input>
-          <button onClick={(e) => handleUpload(e)}>Upload</button>
-        </div>
-      </div>
+      <EditMarkDown />
     </Wrapper>
   );
 };
