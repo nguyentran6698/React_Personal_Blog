@@ -2,18 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import postPic from "../../img/testPic/pic_5.jpeg";
 import styled from "styled-components";
-
+import dateFormat from "dateformat";
 const FeaturedPost = ({ blog }) => {
-  const { id, title, public_date, img, post_content } = blog;
+  const { id, title, post_date, image, description } = blog;
   return (
     <Wrapper className="featured-post">
       <div className="post-img-container">
-        <img src={postPic} alt="" className="img blog-img" />
+        <img src={image} alt="" className="img blog-img" />
       </div>
       <div className="blog">
-        <p>{public_date}</p>
+        <p>{dateFormat(post_date, "mmm dd,yyyy")}</p>
         <h4 className="blog-title">{title}</h4>
-        <p>{`${post_content.slice(0, 70)}...`}</p>
+        <p className="feat-desc">{`${description.slice(0, 70)}...`}</p>
         <Link to={`/blogs/${id}`} className="blog-btn">
           read article
         </Link>
@@ -46,8 +46,11 @@ const Wrapper = styled.article`
     p {
       font-size: 0.75rem;
       max-width: 250px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0;
       color: var(--grey-clr);
+    }
+    .feat-desc {
+      margin-bottom: 0.75rem;
     }
   }
   .blog-btn {

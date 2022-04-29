@@ -63,15 +63,21 @@ const EditMarkDown = () => {
         content: DOMPurify.sanitize(post.content),
       };
     });
-    editorText.setData("");
-    await setPost({
-      id: "",
-      public_date: "",
-      title: "",
-      image: "",
-      description: "",
-      content: "",
-    });
+    try {
+      const response = await axios.post("http://localhost:3000/posts", post);
+      console.log(response);
+      editorText.setData("");
+      await setPost({
+        id: "",
+        public_date: "",
+        title: "",
+        image: "",
+        description: "",
+        content: "",
+      });
+    } catch (err) {
+      console.log(err.response);
+    }
   };
   console.log(post);
   /*End of Code Seperation*/
@@ -170,6 +176,7 @@ const Wrapper = styled.div`
       min-width: 100%;
       .ck-editor__editable_inline {
         min-height: 200px;
+        max-height: 600px;
       }
     }
     .previewContainer {

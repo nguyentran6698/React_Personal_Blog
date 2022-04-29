@@ -6,29 +6,39 @@ import ErrorPage from "../Pages/ErrorPage";
 import imgSrc from "../img/testPic/pic_6.jpeg";
 import styled from "styled-components";
 import { devices } from "../styled-components/size";
+import dateFormat from "dateformat";
+import DOMPurify from "dompurify";
 const SinglePage = () => {
   const { blogId } = useParams();
-
+  const createMarkup = (html) => {
+    return {
+      __html: DOMPurify.sanitize(html),
+    };
+  };
   const { loading, error, setQuery, blogs } = useGlobalContext();
   if (loading) {
     return <Loading />;
   }
-  const { title, img, public_date, img: imgPost, post_content } = blogs.find(
+  const { title, post_date, image, content } = blogs.find(
     (blog) => blog.id === parseInt(blogId)
   );
   if (error.show) {
     return <ErrorPage {...error} />;
   }
-
   return (
     <Wrapper>
-      <img src={imgSrc} alt="" className="img img-post" />
       <div className="post-content">
         <div className="header">
           <h2>{title}</h2>
-          <p>{public_date}</p>
+          <p>{dateFormat(post_date, "mmmm dd, yyyy")}</p>
+          <div className="img-container">
+            <img src={image} alt="" className="img img-post" />
+          </div>
         </div>
-        <p>{post_content}</p>
+        <p
+          dangerouslySetInnerHTML={createMarkup(content)}
+          className="content-wrapper"
+        />
         <Link to="/blogs" className="btn">
           Go Back
         </Link>
@@ -39,12 +49,13 @@ const SinglePage = () => {
 const Wrapper = styled.section`
   max-width: 1100px;
   margin: 0 auto;
-  .img-post {
-    margin-top: 2rem;
-    max-height: 500px;
-  }
+  margin-top: 5rem;
   .post-content {
     padding: 0.75rem 1rem;
+    .img-container {
+      margin: 1.5rem auto;
+      height: 500px;
+    }
     .header {
       h2 {
         margin: 0;
@@ -64,6 +75,11 @@ const Wrapper = styled.section`
       background: transparent;
       border: 1px solid var(--primary-700);
     }
+    .content-wrapper {
+      img {
+        max-width: 100%;
+      }
+    }
   }
 
   .btn:hover {
@@ -73,9 +89,6 @@ const Wrapper = styled.section`
   @media ${devices.tabletL} {
     .post-content {
       padding: 0;
-      .header {
-        width: 80%;
-      }
     }
   }
 `;

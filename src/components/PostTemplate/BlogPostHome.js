@@ -57,7 +57,7 @@ const Wrapper = styled.section`
   }
   .newPostLeft {
     display: grid;
-    row-gap: 2.5rem;
+    row-gap: 2rem;
   }
   .newPostRight {
     display: none;
@@ -65,15 +65,26 @@ const Wrapper = styled.section`
   @media ${devices.tabletM} {
     .post-wrapper {
       display: grid;
-      grid-template-columns: 1fr 500px;
-      column-gap: 2rem;
+      grid-template-columns: 1fr 300px;
+      column-gap: 3rem;
     }
     .newPostLeft {
       grid-template-columns: 1fr 1fr;
-      column-gap: 1.2rem;
+      column-gap: 1.5rem;
+      .post-container {
+        margin: 0;
+        gap: 0;
+      }
+      .img-container {
+        height: 290px;
+      }
     }
     .newPostRight {
       display: block;
+      .post-container {
+        padding-bottom: 0.3rem;
+        border-bottom: 1px solid var(--grey-clr);
+      }
     }
   }
 `;

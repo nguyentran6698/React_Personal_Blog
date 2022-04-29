@@ -2,21 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import imgSrc from "../../img/testPic/pic_5.jpeg";
+import dateFormat from "dateformat";
 import { devices } from "../../styled-components/size";
-const BasicPost = ({ post, left, header }) => {
-  const { title, public_date: date, img, post_content, id } = post;
+const BasicPost = ({ post, left }) => {
+  const { title, post_date: public_date, image, description, id } = post;
+
   return (
     <Wrapper>
       <div className="post-container">
         {left && (
           <div className="img-container">
-            <img src={imgSrc} alt="" className="img" />
+            <img src={image} alt="" className="img" />
           </div>
         )}
         <div className="content-container">
-          <p>{date}</p>
-          <h3>{title}</h3>
-          <p>{`${post_content.slice(0, 85)}...`}</p>
+          <span className="post-date">
+            {dateFormat(public_date, "mmmm dd, yyyy")}
+          </span>
+          <h2 className="post-title">{title}</h2>
+          <p>{`${description.slice(0, 85)}...`}</p>
+          <div className="post-meta">
+            <span className="categories">Categories: </span>
+            <Link to="blogs">business</Link>
+            <Link to="blogs">travel</Link>
+          </div>
           <Link to={`/blogs/${id}`} className="read-btn">
             Read More
           </Link>
@@ -29,14 +38,13 @@ const Wrapper = styled.article`
   .post-container {
     box-shadow: var(--boxShadow);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr;
     .img-container {
-      max-height: 200px;
+      height: 294.91px;
       border-radius: var(--borderRadius);
-      box-shadow: var(--box-normal-shadow);
       transition: var(--fast-transition);
       overflow: hidden;
+      margin-bottom: 1rem;
       img {
         border-radius: var(--borderRadius);
         transition: var(--fast-transition);
@@ -49,22 +57,38 @@ const Wrapper = styled.article`
       }
     }
     .content-container {
-      h3 {
+      .post-title {
         color: var(--primary-700);
         font-size: 1rem;
+        font-weight: 700;
         text-transform: capitalize;
-        margin: 0;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
       }
       p {
         font-size: 0.75rem;
-        margin-bottom: 0.375rem;
-        max-width: 250px;
+        margin: 0;
+        color: var(--grey-clr);
+      }
+      .post-meta {
+        a {
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: capitalize;
+          display: inline-block;
+          margin-right: 3px;
+        }
+        .categories {
+          margin-right: 3px;
+        }
+      }
+      span {
+        font-size: 0.75rem;
+        margin-top: 0;
         color: var(--grey-clr);
       }
       .read-btn {
         font-size: 0.85rem;
-        padding: 0.35rem;
-        padding-left: 0;
         color: var(--primary-600);
         &:hover {
           color: var(--secondary-700);
@@ -76,9 +100,6 @@ const Wrapper = styled.article`
     .post-container {
       grid-template-columns: 1fr;
       margin-bottom: 1.5rem;
-      .img-container {
-        margin-bottom: 1.2rem;
-      }
     }
   }
 `;

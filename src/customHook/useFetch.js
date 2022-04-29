@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { blogSample } from "../data";
 const useFetch = (urlParams) => {
   const [loading, setLoading] = useState(true);
@@ -6,7 +7,8 @@ const useFetch = (urlParams) => {
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async (url) => {
     try {
-      setBlogs(blogSample);
+      const { data } = await axios(url);
+      setBlogs(data);
     } catch (err) {
       setError({ show: true, msg: err.message });
     }

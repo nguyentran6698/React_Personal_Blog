@@ -4,23 +4,20 @@ import { useGlobalContext } from "../context";
 import Loading from "../components/Loading";
 import BasicPost from "../components/PostTemplate/BasicPost";
 import { devices } from "../styled-components/size";
+import Header from "../components/PostHeaderSlide/BlogPostHeader";
 const Blogs = () => {
   const { loading, blogs, setQuery } = useGlobalContext();
   if (loading) {
     return <Loading />;
   }
-
-  const newestPost = blogs[0];
-  const newBlogs = blogs.slice(1);
-
   return (
     <Wrapper>
       <div className="blogs-container">
         <div className="blog-header">
-          <BasicPost post={newestPost} left={true} />
+          <Header blogs={blogs} />
         </div>
         <div className="blog-post-section">
-          {newBlogs.map((blog, id) => {
+          {blogs.map((blog, id) => {
             return <BasicPost post={blog} key={id} left={true} />;
           })}
         </div>
@@ -33,23 +30,14 @@ const Wrapper = styled.section`
   margin: 0 auto;
   .blogs-container {
     padding: 2rem 1.5rem;
-    .blog-header {
-      margin: 2rem 0 3.5rem 0;
-      .post-container {
-        column-gap: 1.2rem;
-        grid-template-columns: 1fr;
-      }
-      .img-container {
-        max-height: 300px;
-      }
-    }
     .blog-post-section {
       display: grid;
       margin: 0 auto;
-      gap: 1rem;
+      column-gap: 2rem;
       .post-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+        margin-top: 2rem;
       }
     }
   }
@@ -67,8 +55,6 @@ const Wrapper = styled.section`
         }
         p {
           font-size: 1.1rem;
-          max-width: 500px;
-          margin-bottom: 1rem;
         }
         .read-btn {
           font-size: 1.1rem;
@@ -76,14 +62,17 @@ const Wrapper = styled.section`
       }
     }
     .blog-post-section {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
   @media ${devices.tabletL} {
     .blog-header {
       .img-container {
-        max-height: 400px !important;
+        height: 370px;
+        max-height: 370px !important;
       }
+    }
+    .blog-post-section {
     }
   }
 `;
