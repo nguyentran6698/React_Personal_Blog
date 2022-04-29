@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { blogSample } from "../data";
 const useFetch = (urlParams) => {
   const [loading, setLoading] = useState(true);

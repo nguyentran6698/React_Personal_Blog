@@ -52,55 +52,9 @@ const BlogEdit = () => {
   };
   return (
     <Wrapper>
-      <div className="text-editor-container">
-        <form action="" className="form">
-          <h2>Write Something Today</h2>
-          <div className="form-control">
-            <label htmlFor="">Title: </label>
-            <input
-              name="title"
-              type="text"
-              value={content.title}
-              id="title"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-
-          <EditMarkDown setContentRender={setContentRender} />
-          <button type="submit" onClick={() => handleSubmit}>
-            Click Me
-          </button>
-        </form>
-        <div className="form-control">
-          <label htmlFor="">Image: </label>
-          <input
-            type="file"
-            value={content.pic}
-            onChange={(e) => handleFile(e)}
-            name="image"
-          ></input>
-          <button onClick={(e) => handleUpload(e)}>Upload</button>
-        </div>
-      </div>
+      <EditMarkDown />
     </Wrapper>
   );
 };
-const Wrapper = styled.section`
-  max-width: 1400px;
-  .text-editor-container {
-    padding: 2rem 1.5rem;
-    .form {
-      max-width: 500px;
-      margin: 0 auto;
-      .form-control {
-        input {
-          display: block;
-          width: 80%;
-          font-size: 1.2rem;
-        }
-        width: 100%;
-      }
-    }
-  }
-`;
+const Wrapper = styled.section``;
 export default BlogEdit;

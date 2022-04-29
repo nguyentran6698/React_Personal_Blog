@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import SinglePostComponent from "./FeaturedPost";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
