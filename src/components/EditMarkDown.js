@@ -6,11 +6,13 @@ import axios from "axios";
 import FormData from "form-data";
 import Editor from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
+import SelectCategories from "../styled-components/SelectButton";
 // MUI Component
 import { TextField, Button, Input } from "@mui/material";
 const testURL = "http://localhost:5000/api/v1/image";
 const proURL = "https://chau-blog-api-v1.herokuapp.com/api/v1/blogs/uploads";
 const EditMarkDown = () => {
+  const [categories, setCategories] = useState([]);
   const [post, setPost] = useState({
     id: "",
     title: "",
@@ -18,12 +20,14 @@ const EditMarkDown = () => {
     image: "",
     description: "",
     content: "",
+    categories: [],
   });
   const [editorText, setEditorContext] = useState(null);
   const hiddenInput = useRef(null);
   const generateUniqueId = () => {
     return Math.floor(Math.random() * Date.now());
   };
+  /*Input Function*/
   /*Upload Image Function*/
   const uploadImage = async (event) => {
     console.log(event.target.files[0]);
@@ -61,11 +65,11 @@ const EditMarkDown = () => {
         id: generateUniqueId(),
         public_date: dateFormat(new Date(), "mmmm dd, yyyy"),
         content: DOMPurify.sanitize(post.content),
+        categories,
       };
     });
     try {
       const response = await axios.post("http://localhost:3000/posts", post);
-      console.log(response);
       editorText.setData("");
       await setPost({
         id: "",
@@ -74,6 +78,7 @@ const EditMarkDown = () => {
         image: "",
         description: "",
         content: "",
+        categories: [],
       });
     } catch (err) {
       console.log(err.response);
@@ -95,7 +100,6 @@ const EditMarkDown = () => {
           value={post.title}
           onChange={handleChange}
         />
-
         <TextField
           type="text"
           value={post.description}
@@ -105,7 +109,7 @@ const EditMarkDown = () => {
           name="description"
           onChange={handleChange}
         />
-
+        <SelectCategories setCategoriesParent={setCategories} />
         <div className="form-control">
           <p
             style={{

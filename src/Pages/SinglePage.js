@@ -19,7 +19,7 @@ const SinglePage = () => {
   if (loading) {
     return <Loading />;
   }
-  const { title, post_date, image, content } = blogs.find(
+  const { title, post_date, image, content, categories } = blogs.find(
     (blog) => blog.id === parseInt(blogId)
   );
   if (error.show) {
@@ -30,6 +30,14 @@ const SinglePage = () => {
       <div className="post-content">
         <div className="header">
           <h2>{title}</h2>
+          <span className="categories">Categories: </span>
+          {categories.map((category, id) => {
+            return (
+              <Link to={`blogs/${id}`} key={id}>
+                {category}
+              </Link>
+            );
+          })}
           <p>{dateFormat(post_date, "mmmm dd, yyyy")}</p>
           {image && (
             <div className="img-container">
@@ -54,6 +62,25 @@ const Wrapper = styled.section`
   margin-top: 5rem;
   .post-content {
     padding: 0.75rem 1rem;
+    .header {
+      a {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: capitalize;
+        display: inline-block;
+        margin-right: 3px;
+        padding: 0.1rem 0.25rem;
+        background: var(--secondary-500);
+        border-radius: var(--borderRadius);
+      }
+      .categories {
+        margin-right: 3px;
+      }
+      span {
+        margin-top: 0;
+        color: var(--grey-clr);
+      }
+    }
     .img-container {
       margin: 1.5rem auto;
       width: 100%;

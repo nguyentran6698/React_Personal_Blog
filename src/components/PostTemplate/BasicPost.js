@@ -30,7 +30,6 @@ const BasicPost = ({ post, left }) => {
           <div className="post-meta">
             <span className="categories">Categories: </span>
             {categories.map((category, id) => {
-              console.log(category);
               return (
                 <Link to={`blogs/${id}`} key={id}>
                   {category}
@@ -89,6 +88,9 @@ const Wrapper = styled.article`
           text-transform: capitalize;
           display: inline-block;
           margin-right: 3px;
+          padding: 0.1rem 0.25rem;
+          background: var(--secondary-500);
+          border-radius: var(--borderRadius);
         }
         .categories {
           margin-right: 3px;
