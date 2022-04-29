@@ -5,8 +5,14 @@ import imgSrc from "../../img/testPic/pic_5.jpeg";
 import dateFormat from "dateformat";
 import { devices } from "../../styled-components/size";
 const BasicPost = ({ post, left }) => {
-  const { title, post_date: public_date, image, description, id } = post;
-
+  const {
+    title,
+    post_date: public_date,
+    image,
+    description,
+    id,
+    categories,
+  } = post;
   return (
     <Wrapper>
       <div className="post-container">
@@ -23,8 +29,14 @@ const BasicPost = ({ post, left }) => {
           <p>{`${description.slice(0, 85)}...`}</p>
           <div className="post-meta">
             <span className="categories">Categories: </span>
-            <Link to="blogs">business</Link>
-            <Link to="blogs">travel</Link>
+            {categories.map((category, id) => {
+              console.log(category);
+              return (
+                <Link to={`blogs/${id}`} key={id}>
+                  {category}
+                </Link>
+              );
+            })}
           </div>
           <Link to={`/blogs/${id}`} className="read-btn">
             Read More

@@ -31,9 +31,11 @@ const SinglePage = () => {
         <div className="header">
           <h2>{title}</h2>
           <p>{dateFormat(post_date, "mmmm dd, yyyy")}</p>
-          <div className="img-container">
-            <img src={image} alt="" className="img img-post" />
-          </div>
+          {image && (
+            <div className="img-container">
+              <img src={image} alt="" className="img img-post" />
+            </div>
+          )}
         </div>
         <p
           dangerouslySetInnerHTML={createMarkup(content)}
@@ -54,7 +56,12 @@ const Wrapper = styled.section`
     padding: 0.75rem 1rem;
     .img-container {
       margin: 1.5rem auto;
+      width: 100%;
       height: 500px;
+      img {
+        max-width: 100%;
+        border-radius: var(--borderRadius);
+      }
     }
     .header {
       h2 {

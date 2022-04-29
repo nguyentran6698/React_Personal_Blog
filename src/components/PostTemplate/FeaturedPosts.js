@@ -13,9 +13,7 @@ const FeaturedPosts = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log(blogs);
   const featuredBlogs = blogs.filter((blog) => blog.featured === true);
-  console.log(featuredBlogs);
   return (
     <Wrapper>
       <div className="title">

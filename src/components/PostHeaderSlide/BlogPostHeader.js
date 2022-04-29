@@ -35,6 +35,7 @@ const Wrapper = styled.header`
     .post-container {
       grid-template-columns: 1fr;
       column-gap: 2rem;
+      margin-bottom: 1.2rem;
       .content-container {
         h2 {
           font-size: 2.3rem;
@@ -55,10 +56,6 @@ const Wrapper = styled.header`
     }
   }
   @media ${devices.tabletM} {
-    .post-container {
-      grid-template-columns: 1fr;
-      margin-bottom: 0;
-    }
   }
 `;
 export default BlogPostHeader;
