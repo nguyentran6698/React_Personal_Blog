@@ -9,7 +9,6 @@ const BlogPostHeader = ({ blogs }) => {
   const newPosts = blogs.slice(0, 4);
   return (
     <Wrapper>
-      <h2>All Posts</h2>
       <Slider
         className="posts-header"
         dots={true}
@@ -47,6 +46,10 @@ const Wrapper = styled.header`
         span,
         .read-btn {
           font-size: 1.1rem;
+        }
+        .read-btn {
+          display: block;
+          margin-top: 0.8rem;
         }
       }
     }

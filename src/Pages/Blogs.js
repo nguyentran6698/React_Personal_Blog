@@ -16,6 +16,7 @@ const Blogs = () => {
   return (
     <Wrapper>
       <div className="blogs-container">
+        <h2>All Posts</h2>
         <div className="blog-header">
           <Header blogs={blogs} />
         </div>

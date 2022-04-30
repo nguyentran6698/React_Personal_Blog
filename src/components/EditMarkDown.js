@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import dateFormat from "dateformat";
 import axios from "axios";
@@ -10,7 +10,7 @@ import SelectCategories from "../styled-components/SelectButton";
 // MUI Component
 import { TextField, Button } from "@mui/material";
 const testURL = "http://localhost:5000/api/v1/image";
-const proURL = "https://chau-blog-api-v1.herokuapp.com/api/v1/blogs/uploads";
+// const proURL = "https://chau-blog-api-v1.herokuapp.com/api/v1/blogs/uploads";
 const initialState = {
   id: "",
   title: "",
@@ -24,11 +24,46 @@ const generateUniqueId = () => {
   return Math.floor(Math.random() * Date.now());
 };
 const EditMarkDown = () => {
+  const location = useLocation();
+  const editPost = location.state ? location.state.editPost : initialState;
+
+  const updateVer = location.state
+    ? {
+        method: "patch",
+        value: "update",
+        url: `http://localhost:3000/posts/${editPost.id}`,
+      }
+    : { method: "post", value: "post", url: "http://localhost:3000/posts" };
   const [categories, setCategories] = useState([]);
-  const [post, setPost] = useState(initialState);
+  const [post, setPost] = useState(editPost);
   const [editorText, setEditorContext] = useState(null);
   const hiddenInput = useRef(null);
-
+  useEffect(() => {
+    setPost((post) => {
+      return {
+        ...post,
+        id: generateUniqueId(),
+        public_date: dateFormat(new Date(), "mmmm dd, yyyy"),
+      };
+    });
+  }, []);
+  useEffect(() => {
+    setPost({ ...editPost });
+    if (editPost && editPost.categories) {
+      setCategories(editPost.categories);
+    }
+    if (editorText) {
+      editorText.setData(editPost.content);
+    }
+  }, [editPost, editorText]);
+  useEffect(() => {
+    setPost((oldPost) => {
+      return {
+        ...oldPost,
+        categories,
+      };
+    });
+  }, [categories]);
   const uploadImage = async (event) => {
     const name = event.target.name;
     const value = event.target.files[0];
@@ -56,8 +91,11 @@ const EditMarkDown = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setCategories([]);
-    axios
-      .post("http://localhost:3000/posts", post)
+    axios({
+      method: updateVer.method,
+      url: updateVer.url,
+      data: post,
+    })
       .then((res, rej) => {
         editorText.setData("");
         setCategories([]);
@@ -65,21 +103,7 @@ const EditMarkDown = () => {
       })
       .catch((err) => console.log(err.response));
   };
-  useState(() => {
-    setPost((post) => {
-      return {
-        ...post,
-        id: generateUniqueId(),
-        public_date: dateFormat(new Date(), "mmmm dd, yyyy"),
-      };
-    });
-  }, []);
-  useEffect(() => {
-    setPost({
-      ...post,
-      categories,
-    });
-  }, [categories]);
+
   return (
     <Wrapper>
       <form className="form" onSubmit={handleSubmit}>
@@ -159,7 +183,7 @@ const EditMarkDown = () => {
         </div>
 
         <Button variant="contained" type="submit">
-          Post
+          {updateVer.value}
         </Button>
       </form>
     </Wrapper>
