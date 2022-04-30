@@ -1,30 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import imgSrc from "../../img/testPic/pic_5.jpeg";
 import dateFormat from "dateformat";
+import notFoundImage from "../../img/notFoundImage.png";
 import { devices } from "../../styled-components/size";
 const BasicPost = ({ post, left }) => {
-  const {
-    title,
-    post_date: public_date,
-    image,
-    description,
-    id,
-    categories,
-  } = post;
+  const { title, public_date, image, description, id, categories } = post;
+  console.log(public_date);
   return (
     <Wrapper>
       <div className="post-container">
         {left && (
           <div className="img-container">
-            <img src={image} alt="" className="img" />
+            <img src={image ? image : notFoundImage} alt="" className="img" />
           </div>
         )}
         <div className="content-container">
-          <span className="post-date">
-            {dateFormat(public_date, "mmmm dd, yyyy")}
-          </span>
+          <span className="post-date">{public_date}</span>
           <h2 className="post-title">{title}</h2>
           <p>{`${description.slice(0, 85)}...`}</p>
           <div className="post-meta">

@@ -1,17 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import postPic from "../../img/testPic/pic_5.jpeg";
+import notFoundImage from "../../img/notFoundImage.png";
 import styled from "styled-components";
 import dateFormat from "dateformat";
 const FeaturedPost = ({ blog }) => {
-  const { id, title, post_date, image, description } = blog;
+  const { id, title, public_date, image, description } = blog;
   return (
     <Wrapper className="featured-post">
       <div className="post-img-container">
-        <img src={image} alt="" className="img blog-img" />
+        <img
+          src={image ? image : notFoundImage}
+          alt=""
+          className="img blog-img"
+        />
       </div>
       <div className="blog">
-        <p>{dateFormat(post_date, "mmm dd,yyyy")}</p>
+        <p>{public_date}</p>
         <h4 className="blog-title">{title}</h4>
         <p className="feat-desc">{`${description.slice(0, 70)}...`}</p>
         <Link to={`/blogs/${id}`} className="blog-btn">

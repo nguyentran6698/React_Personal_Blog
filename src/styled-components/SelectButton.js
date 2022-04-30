@@ -19,36 +19,35 @@ const MenuProps = {
   },
 };
 
-function getStyles(category, categories, theme) {
-  return {
-    fontWeight:
-      categories.indexOf(category) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
 const categoriesSelect = [
   "Business",
-  "Edutcation",
+  "Education",
   "Life Style",
   "Work",
   "Study",
   "Event",
   "Workout",
 ];
-const SelectCategories = ({ setCategoriesParent }) => {
+const SelectCategories = ({
+  categoriesOptions,
+  categoriesParent,
+  setCategoriesParent,
+}) => {
   const theme = useTheme();
-  const [categories, setCategories] = useState([]);
-
+  function getStyles(category, categoriesParent, theme) {
+    return {
+      fontWeight:
+        categoriesParent.indexOf(category) === -1
+          ? theme.typography.fontWeightRegular
+          : theme.typography.fontWeightMedium,
+    };
+  }
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setCategories(typeof value === "string" ? value.split(",") : value);
+    setCategoriesParent(typeof value === "string" ? value.split(",") : value);
   };
-  useEffect(() => {
-    setCategoriesParent(categories);
-  }, [setCategoriesParent, categories]);
   return (
     <div>
       <FormControl sx={{ width: 300 }}>
@@ -57,7 +56,7 @@ const SelectCategories = ({ setCategoriesParent }) => {
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
-          value={categories}
+          value={categoriesParent}
           onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" label="Categories" />}
           renderValue={(selected) => (
@@ -73,7 +72,7 @@ const SelectCategories = ({ setCategoriesParent }) => {
             <MenuItem
               key={category}
               value={category}
-              style={getStyles(category, categories, theme)}
+              style={getStyles(category, categoriesParent, theme)}
             >
               {category}
             </MenuItem>

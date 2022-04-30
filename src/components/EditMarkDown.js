@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import DOMPurify from "dompurify";
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import dateFormat from "dateformat";
 import axios from "axios";
@@ -8,36 +8,32 @@ import Editor from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import SelectCategories from "../styled-components/SelectButton";
 // MUI Component
-import { TextField, Button, Input } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 const testURL = "http://localhost:5000/api/v1/image";
 const proURL = "https://chau-blog-api-v1.herokuapp.com/api/v1/blogs/uploads";
+const initialState = {
+  id: "",
+  title: "",
+  public_date: "",
+  image: "",
+  description: "",
+  content: "",
+  categories: [],
+};
+const generateUniqueId = () => {
+  return Math.floor(Math.random() * Date.now());
+};
 const EditMarkDown = () => {
   const [categories, setCategories] = useState([]);
-  const [post, setPost] = useState({
-    id: "",
-    title: "",
-    public_date: "",
-    image: "",
-    description: "",
-    content: "",
-    categories: [],
-  });
+  const [post, setPost] = useState(initialState);
   const [editorText, setEditorContext] = useState(null);
   const hiddenInput = useRef(null);
-  const generateUniqueId = () => {
-    return Math.floor(Math.random() * Date.now());
-  };
-  /*Input Function*/
-  /*Upload Image Function*/
+
   const uploadImage = async (event) => {
-    console.log(event.target.files[0]);
     const name = event.target.name;
     const value = event.target.files[0];
-
     const bodyFormData = new FormData();
-
     bodyFormData.append("upload", value);
-
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
@@ -57,35 +53,33 @@ const EditMarkDown = () => {
   const handleCkeditorState = (event, editor) => {
     setPost({ ...post, content: editorText.getData() });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await setPost((post) => {
+    setCategories([]);
+    axios
+      .post("http://localhost:3000/posts", post)
+      .then((res, rej) => {
+        editorText.setData("");
+        setCategories([]);
+        setPost(initialState);
+      })
+      .catch((err) => console.log(err.response));
+  };
+  useState(() => {
+    setPost((post) => {
       return {
         ...post,
         id: generateUniqueId(),
         public_date: dateFormat(new Date(), "mmmm dd, yyyy"),
-        content: DOMPurify.sanitize(post.content),
-        categories,
       };
     });
-    try {
-      const response = await axios.post("http://localhost:3000/posts", post);
-      editorText.setData("");
-      await setPost({
-        id: "",
-        public_date: "",
-        title: "",
-        image: "",
-        description: "",
-        content: "",
-        categories: [],
-      });
-    } catch (err) {
-      console.log(err.response);
-    }
-  };
-  console.log(post);
-  /*End of Code Seperation*/
+  }, []);
+  useEffect(() => {
+    setPost({
+      ...post,
+      categories,
+    });
+  }, [categories]);
   return (
     <Wrapper>
       <form className="form" onSubmit={handleSubmit}>
@@ -109,7 +103,10 @@ const EditMarkDown = () => {
           name="description"
           onChange={handleChange}
         />
-        <SelectCategories setCategoriesParent={setCategories} />
+        <SelectCategories
+          categoriesParent={categories}
+          setCategoriesParent={setCategories}
+        />
         <div className="form-control">
           <p
             style={{
@@ -160,6 +157,7 @@ const EditMarkDown = () => {
             onChange={handleCkeditorState}
           />
         </div>
+
         <Button variant="contained" type="submit">
           Post
         </Button>

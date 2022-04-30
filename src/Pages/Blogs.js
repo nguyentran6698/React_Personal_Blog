@@ -7,6 +7,9 @@ import { devices } from "../styled-components/size";
 import Header from "../components/PostHeaderSlide/BlogPostHeader";
 const Blogs = () => {
   const { loading, blogs, setQuery } = useGlobalContext();
+  useEffect(() => {
+    setQuery("http://localhost:3000/posts");
+  }, []);
   if (loading) {
     return <Loading />;
   }

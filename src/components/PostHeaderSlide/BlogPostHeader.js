@@ -22,7 +22,6 @@ const BlogPostHeader = ({ blogs }) => {
         slidesToScroll={1}
       >
         {newPosts.map((blog, id) => {
-          console.log(blog);
           return <SinglePostComponent key={id} post={blog} left={true} />;
         })}
       </Slider>
