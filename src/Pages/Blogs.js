@@ -5,7 +5,7 @@ import Loading from "../components/Loading";
 import BasicPost from "../components/PostTemplate/BasicPost";
 import { devices } from "../styled-components/size";
 import Header from "../components/PostHeaderSlide/BlogPostHeader";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 const mapValueJsonServer = {
   categories: "_like",
   order: "_order",
@@ -13,7 +13,7 @@ const mapValueJsonServer = {
 };
 const Blogs = () => {
   const { loading, blogs, setQuery } = useGlobalContext();
-  console.log(blogs);
+  const navigate = useNavigate();
   const [currentParams, setCurrentParams] = useState({ categories: "all" });
   const [searchParams] = useSearchParams();
   useEffect(() => {
