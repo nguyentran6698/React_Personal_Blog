@@ -7,6 +7,7 @@ const useFetch = (urlParams) => {
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async (url) => {
     try {
+      setLoading(true);
       const { data } = await axios(url);
       setBlogs(data);
     } catch (err) {

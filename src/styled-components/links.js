@@ -20,19 +20,19 @@ const links = [
 ];
 const socialLinks = [
   {
-    refLink: "facebook.com",
+    refLink: "https://www.facebook.com/",
     refIcon: <FaFacebook />,
   },
   {
-    refLink: "twitter.com",
+    refLink: "https://www.facebook.com/",
     refIcon: <FaTwitter />,
   },
   {
-    refLink: "twitter.com",
+    refLink: "https://www.facebook.com/",
     refIcon: <FaInstagram />,
   },
   {
-    refLink: "Linkedin.com",
+    refLink: "https://www.facebook.com/",
     refIcon: <FaLinkedin />,
   },
 ];
