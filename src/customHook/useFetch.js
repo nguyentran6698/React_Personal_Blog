@@ -3,7 +3,6 @@ import axios from "axios";
 import { blogSample } from "../data";
 const useFetch = (urlParams) => {
   const [loading, setLoading] = useState(true);
-
   const [error, setError] = useState({ show: false, msg: "" });
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async (url) => {

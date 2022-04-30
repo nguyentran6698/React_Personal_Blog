@@ -22,7 +22,7 @@ const BasicPost = ({ post, left }) => {
             <span className="categories">Categories: </span>
             {categories.map((category, id) => {
               return (
-                <Link to={`blogs/${id}`} key={id}>
+                <Link to={`?categories=${category}`} key={id}>
                   {category}
                 </Link>
               );

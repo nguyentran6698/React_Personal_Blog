@@ -1,25 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../context";
 import Loading from "../components/Loading";
 import BasicPost from "../components/PostTemplate/BasicPost";
 import { devices } from "../styled-components/size";
 import Header from "../components/PostHeaderSlide/BlogPostHeader";
+import { useSearchParams } from "react-router-dom";
+const mapValueJsonServer = {
+  categories: "_like",
+  order: "_order",
+  sort: "_sort",
+};
 const Blogs = () => {
   const { loading, blogs, setQuery } = useGlobalContext();
+  console.log(blogs);
+  const [currentParams, setCurrentParams] = useState({ categories: "all" });
+  const [searchParams] = useSearchParams();
   useEffect(() => {
-    setQuery("http://localhost:3000/posts");
-  }, []);
+    if (currentParams.categories !== "all") {
+      let queryParse = Object.keys(currentParams).map((key) => {
+        return `${key}${mapValueJsonServer[key]}=${currentParams[key]}`;
+      });
+      let query = queryParse.join("&");
+      setQuery(`http://localhost:3000/posts?${query}`);
+    } else {
+      setQuery(`http://localhost:3000/posts`);
+    }
+  }, [currentParams]);
+  // handle params
+  useEffect(() => {
+    setCurrentParams({
+      ...currentParams,
+      ...Object.fromEntries([...searchParams]),
+    });
+  }, [searchParams]);
   if (loading) {
     return <Loading />;
   }
   return (
     <Wrapper>
       <div className="blogs-container">
-        <h2>All Posts</h2>
-        <div className="blog-header">
-          <Header blogs={blogs} />
-        </div>
+        <h2 className="blogs-heading">{`${currentParams.categories} Posts`}</h2>
+        {blogs.length > 3 && (
+          <div className="blog-header">
+            <Header blogs={blogs} />
+          </div>
+        )}
         <div className="blog-post-section">
           {blogs.map((blog, id) => {
             return <BasicPost post={blog} key={id} left={true} />;
@@ -34,6 +60,9 @@ const Wrapper = styled.section`
   margin: 0 auto;
   .blogs-container {
     padding: 2rem 1.5rem;
+    .blogs-heading {
+      text-transform: capitalize;
+    }
     .blog-post-section {
       display: grid;
       margin: 0 auto;
