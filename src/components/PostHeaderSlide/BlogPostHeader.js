@@ -9,7 +9,6 @@ const BlogPostHeader = ({ blogs }) => {
   const newPosts = blogs.slice(0, 4);
   return (
     <Wrapper>
-      <h2>All Posts</h2>
       <Slider
         className="posts-header"
         dots={true}
