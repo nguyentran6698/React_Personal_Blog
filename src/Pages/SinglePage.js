@@ -9,6 +9,8 @@ import { devices } from "../styled-components/size";
 import dateFormat from "dateformat";
 import DOMPurify from "dompurify";
 const SinglePage = () => {
+  // debug Purpose
+  window.scrollTo(0, 0);
   const { blogId } = useParams();
   const createMarkup = (html) => {
     return {
@@ -32,7 +34,7 @@ const SinglePage = () => {
           <span className="categories">Categories: </span>
           {categories.map((category, id) => {
             return (
-              <Link to={`blogs/${id}`} key={id}>
+              <Link to={`/blogs?categories=${category}`} key={id}>
                 {category}
               </Link>
             );
