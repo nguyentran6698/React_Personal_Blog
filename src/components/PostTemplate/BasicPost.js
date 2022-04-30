@@ -6,7 +6,6 @@ import notFoundImage from "../../img/notFoundImage.png";
 import { devices } from "../../styled-components/size";
 const BasicPost = ({ post, left }) => {
   const { title, public_date, image, description, id, categories } = post;
-  console.log(public_date);
   return (
     <Wrapper>
       <div className="post-container">

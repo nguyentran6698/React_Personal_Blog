@@ -18,7 +18,9 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="blogs" element={<SharedBlogLayout />}>
             <Route index element={<Blogs />} />
-            <Route path="blogEdit" element={<BlogEdit />} />
+            <Route path="blogEdit" element={<BlogEdit />}>
+              <Route path=":blogId" element={<BlogEdit />} />
+            </Route>
             <Route path=":blogId" element={<SingleBlog />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />

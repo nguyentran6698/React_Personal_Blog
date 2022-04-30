@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import dateFormat from "dateformat";
 import axios from "axios";
@@ -7,8 +7,10 @@ import FormData from "form-data";
 import Editor from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import SelectCategories from "../styled-components/SelectButton";
+import Loading from "../components/Loading";
 // MUI Component
 import { TextField, Button } from "@mui/material";
+import { useGlobalContext } from "../context";
 const testURL = "http://localhost:5000/api/v1/image";
 const proURL = "https://chau-blog-api-v1.herokuapp.com/api/v1/blogs/uploads";
 const initialState = {
@@ -20,15 +22,52 @@ const initialState = {
   content: "",
   categories: [],
 };
+let check = true;
 const generateUniqueId = () => {
   return Math.floor(Math.random() * Date.now());
 };
 const EditMarkDown = () => {
+  const { blogId } = useParams();
+  const { blogs, loading } = useGlobalContext();
+  // For the post fetch
+  const [editPost, setEditPost] = useState(initialState);
   const [categories, setCategories] = useState([]);
-  const [post, setPost] = useState(initialState);
+  const [post, setPost] = useState(editPost);
   const [editorText, setEditorContext] = useState(null);
   const hiddenInput = useRef(null);
-
+  useEffect(() => {
+    setPost((post) => {
+      return {
+        ...post,
+        id: generateUniqueId(),
+        public_date: dateFormat(new Date(), "mmmm dd, yyyy"),
+      };
+    });
+  }, []);
+  useEffect(() => {
+    setPost({ ...editPost });
+    if (editPost.categories) {
+      setCategories(editPost.categories);
+    }
+    if (editorText) {
+      editorText.setData(editPost.content);
+    }
+  }, [editPost, editorText]);
+  useEffect(() => {
+    setPost({
+      ...post,
+      categories,
+    });
+  }, [categories]);
+  if (loading) {
+    return <Loading />;
+  }
+  if (blogId && check) {
+    check = !check;
+    console.log("fetch");
+    setEditPost(blogs.find((blog) => blog.id === parseInt(blogId)));
+  }
+  /*Setup blog to edit*/
   const uploadImage = async (event) => {
     const name = event.target.name;
     const value = event.target.files[0];
@@ -65,21 +104,7 @@ const EditMarkDown = () => {
       })
       .catch((err) => console.log(err.response));
   };
-  useState(() => {
-    setPost((post) => {
-      return {
-        ...post,
-        id: generateUniqueId(),
-        public_date: dateFormat(new Date(), "mmmm dd, yyyy"),
-      };
-    });
-  }, []);
-  useEffect(() => {
-    setPost({
-      ...post,
-      categories,
-    });
-  }, [categories]);
+
   return (
     <Wrapper>
       <form className="form" onSubmit={handleSubmit}>

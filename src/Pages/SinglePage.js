@@ -19,7 +19,7 @@ const SinglePage = () => {
   if (loading) {
     return <Loading />;
   }
-  const { title, post_date, image, content, categories } = blogs.find(
+  const { title, post_date, image, content, categories, id } = blogs.find(
     (blog) => blog.id === parseInt(blogId)
   );
   if (error.show) {
@@ -51,6 +51,9 @@ const SinglePage = () => {
         />
         <Link to="/blogs" className="btn">
           Go Back
+        </Link>
+        <Link to={`/blogs/blogEdit/${id}`} className="btn">
+          Edit
         </Link>
       </div>
     </Wrapper>

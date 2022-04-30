@@ -158,6 +158,33 @@
         "Business",
         "Education"
       ]
+    },
+    {
+      "id": 515441778432,
+      "title": "Help me become a Google Cloud customer, earn $10.",
+      "public_date": "April 30, 2022",
+      "image": "https://res.cloudinary.com/do3hzrufo/image/upload/v1651295497/file-upload/tmp-33-1651295497245_o2fdym.webp",
+      "description": "This is not a joke. I've been trying to become a Google Cloud customer for 9 weeks, but without success. Google support couldn't help. I'm desperate, so hereby I promise to pay you $10 via PayPal if I you can help me to start my Google Cloud trial on https://console.cloud.google.com/freetrial",
+      "content": "<h2 style=\"margin-left:0;\">The Error Codes</h2><ul><li>OR-BSBBF-88 (when I try to verify a bank account in GCP)</li><li>OR-RWE-02 (when I try to verify a bank account in Google Pay)</li><li>OR-ACH-04 (for PayPal after returning from successful PayPal login)</li><li>\"Prepaid cards cannot be used.\" in the form that literally says \"credit <strong>or debit</strong> cards\"</li></ul><p style=\"margin-left:0;\">All errors are 100% reproducible with Chrome and Firefox.</p><h2 style=\"margin-left:0;\">Google Support</h2><p style=\"margin-left:0;\">What a disappointment. For some inexplicable reason most support people didn't care about error codes. Even after 2 weeks without any progress and directly asking for the meaning of error codes they just ignored my plea. Is it possible that Google support has no clue what their error codes mean...? I worked with the following support departments:</p><ul><li>Google Cloud</li><li>Google Pay</li><li>Google Play (I think my case was routed there by mistake)</li></ul><p style=\"margin-left:0;\">All of them were just interested in screenshots and gave random suggestions like \"try a different browser\" and \"clear cache\". I did both, but it made no difference. Another disappointment: no support team has access to the other team's cases, so I had to explain everything from the start multiple times. An escalation manager of GCP was contacted, but even that guy told me he cannot help in any way.</p><h2 style=\"margin-left:0;\">Disclaimer</h2><p>This is not rant. I still believe that Google has great software engineers and good products. Especially their cloud offerings are based on a well thought out architecture, which is able to efficiently scale globally. Even though my admiration for Google has suffered a lot, I'd still prefer to use GCP instead of AWS, Azure, or any other cloud.</p>",
+      "categories": [
+        "Business",
+        "Education",
+        "Life Style",
+        "Work"
+      ]
+    },
+    {
+      "id": 1493519906161,
+      "title": "Warning: Cannot update a component X while rendering a different Y component To locate the bad setState() call inside Y,",
+      "public_date": "",
+      "image": "https://res.cloudinary.com/do3hzrufo/image/upload/v1651302706/file-upload/tmp-34-1651302706365_bvivmy.webp",
+      "description": "Managers need to be able to communicate effectively, either by speaking or writing. They also need a certain degree of flexibility in their thinking and problem-solving skills.",
+      "content": "<p style=\"margin-left:0px;\">I have a Cart component with react-redux and I have a showProducts component that fetches the products from an API (using await- async) inside a useEffect, and then I use useState to set some of the states and use dispatch to update the redux state as well. I keep getting this warning:</p><pre><code class=\"language-javascript\">Warning: Cannot update a component (`Cart`) while rendering a different component (`ShowProducts`). To locate the bad setState() call inside `ShowProducts`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render\nShowProducts@http://localhost:3000/static/js/main.chunk.js:3099:73\n</code></pre><p style=\"margin-left:0px;\">I have a Store page and in my store page I have:</p><pre><code class=\"language-javascript\"> &lt;Grid item xs container &gt;\n    &lt;ShowProducts /&gt;\n &lt;/Grid&gt;\n &lt;Grid item xs container direction=\"column\"&gt;\n    &lt;Cart /&gt;\n &lt;/Grid&gt;\n</code></pre><p style=\"margin-left:0px;\">and in my show products:</p><pre><code class=\"language-javascript\">useEffect(async () =&gt; {\n    await getData();\n  }, []);\n  .\n  dispatch(setShippingCosts);\n  dispatch(setCompanyNam);\n  .\n  .\n  .\n  async function getData() {\n    fetch(\n      `url`\n    )\n      .then((res) =&gt; res.json())\n      .then((data) =&gt; {\n       .\n       .\n       .\n        setProducts(...);\n        setShippingCost(...);\n       .\n\n      })\n      .catch((error) =&gt; {\n        setError(error);\n      });\n  }\n</code></pre><p style=\"margin-left:0px;\">and in my cart, I am using the shipping cost that comes from the show products component. I am not sure how to fix this warning, I have been searching and I haven't found a solution yet. how serious is this warning, and I am not sure why I am getting it.</p>",
+      "categories": [
+        "Business",
+        "Education",
+        "Life Style"
+      ]
     }
   ],
   "categories": [

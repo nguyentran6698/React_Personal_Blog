@@ -48,6 +48,10 @@ const Wrapper = styled.header`
         .read-btn {
           font-size: 1.1rem;
         }
+        .read-btn {
+          display: block;
+          margin-top: 0.8rem;
+        }
       }
     }
     .img-container {
