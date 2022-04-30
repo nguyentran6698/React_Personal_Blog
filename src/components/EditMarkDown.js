@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import dateFormat from "dateformat";
 import axios from "axios";
@@ -7,11 +7,10 @@ import FormData from "form-data";
 import Editor from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import SelectCategories from "../styled-components/SelectButton";
-import Loading from "../components/Loading";
 // MUI Component
 import { TextField, Button } from "@mui/material";
 const testURL = "http://localhost:5000/api/v1/image";
-const proURL = "https://chau-blog-api-v1.herokuapp.com/api/v1/blogs/uploads";
+// const proURL = "https://chau-blog-api-v1.herokuapp.com/api/v1/blogs/uploads";
 const initialState = {
   id: "",
   title: "",
@@ -58,9 +57,11 @@ const EditMarkDown = () => {
     }
   }, [editPost, editorText]);
   useEffect(() => {
-    setPost({
-      ...post,
-      categories,
+    setPost((oldPost) => {
+      return {
+        ...oldPost,
+        categories,
+      };
     });
   }, [categories]);
   const uploadImage = async (event) => {
