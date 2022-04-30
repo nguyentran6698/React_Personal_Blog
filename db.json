@@ -185,6 +185,19 @@
         "Education",
         "Life Style"
       ]
+    },
+    {
+      "id": 1493519906162,
+      "title": "How to dynamically change collection in from client side ?",
+      "public_date": "",
+      "image": "https://res.cloudinary.com/do3hzrufo/image/upload/v1651310058/file-upload/tmp-35-1651310057725_llmd7i.webp",
+      "description": "This article presents OpenAPI Editor, a free, online tool that developers can use to edit their API interfaces. For newcomers, OpenAPI is an open-source format for designing RESTful APIs and web services that serves as a single source of truth for all parties involved in the software development process: developers, testers, etc.",
+      "content": "<p style=\"margin-left:0;\">Hello Coders!</p><p style=\"margin-left:0;\">This article presents <a href=\"https://appseed.us/generator/openapi/\"><u>OpenAPI Editor</u></a>, a free, online tool that developers can use to edit their API interfaces. For newcomers, <strong>OpenAPI</strong> is an open-source format for designing RESTful APIs and web services that serves as a single source of truth for all parties involved in the software development process: developers, testers, etc.</p><blockquote><p style=\"margin-left:0;\"><strong>Thanks for reading!</strong></p></blockquote><ul><li>👉 <a href=\"https://appseed.us/generator/openapi/\"><u>OpenAPI Editor</u></a> - product page</li><li>👉 Free <a href=\"https://appseed.us/support/\"><u>support</u></a> via Email and <a href=\"https://discord.gg/fZC6hup\"><u>Discord</u></a></li></ul><p><br>✨ Product Information</p><p style=\"margin-left:0;\">The service can be used to edit and generate unlimited documents, without an account on AppSeed. The editor supports editing the global API information (Title, API version, description), add/remove entities, and fields for each OpenAPI entity. Supported fields:</p><ul><li>✔️ string</li><li>✔️ timestamp</li><li>✔️ UUID</li><li>✔️ binary</li><li>✔️ boolean</li><li>✔️ number</li><li>✔️ object (all entities previously defined)</li></ul><p style=\"margin-left:0;\">Users are able to edit directly the generated JSON and the changes should be reflected automatically in the entities editor. Once the user finishes the document and hits the download button, the OpenAPI definition is saved locally.</p><hr><blockquote><p style=\"margin-left:0;\">Thanks for reading! For more OpenAPI-related resources, feel free to access:</p></blockquote><ul><li>👉 <a href=\"https://stoplight.io/openapi\"><u>What is OpenAPI</u></a> - Definition &amp; Standards</li><li>👉 <a href=\"https://rapidapi.com/blog/api-glossary/openapi/\"><u>OpenAPI the same as Swagger</u></a> by RapidAPI</li><li>👉 <a href=\"https://nonamesecurity.com/glossary/openapi\"><u>OpenAPI Guide</u></a> - a comprehensive introduction</li></ul>",
+      "categories": [
+        "Study",
+        "Event",
+        "Education"
+      ]
     }
   ],
   "categories": [
