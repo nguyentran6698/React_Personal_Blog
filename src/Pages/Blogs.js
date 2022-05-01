@@ -5,13 +5,15 @@ import Loading from "../components/Loading";
 import BasicPost from "../components/PostTemplate/BasicPost";
 import { devices } from "../styled-components/size";
 import Header from "../components/PostHeaderSlide/BlogPostHeader";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import useFetch from "../customHook/useFetch";
+import { textAlign } from "@mui/system";
 // Testing Purspose
 const mapValueJsonServer = {
   categories: "_like",
   order: "_order",
   sort: "_sort",
+  title: "_like",
 };
 const Blogs = () => {
   const { loading, blogs, setQuery } = useGlobalContext();
@@ -24,6 +26,7 @@ const Blogs = () => {
         return `${key}${mapValueJsonServer[key]}=${currentParams[key]}`;
       });
       let query = queryParse.join("&");
+      console.log(query);
       setQuery(`http://localhost:3000/posts?${query}`);
     } else {
       setQuery(`http://localhost:3000/posts`);
@@ -32,13 +35,25 @@ const Blogs = () => {
 
   // handle params
   useEffect(() => {
+    console.log({ ...Object.fromEntries([...searchParams]) });
     setCurrentParams({
-      ...currentParams,
       ...Object.fromEntries([...searchParams]),
     });
   }, [searchParams]);
   if (loading) {
     return <Loading />;
+  }
+  if (blogs.length === 0) {
+    return (
+      <Wrapper>
+        <div className="blogs-container" style={{ textAlign: "center" }}>
+          <h2 style={{ textTransform: "capitalize" }}>
+            None of the blog match your search
+          </h2>
+          <Link to="/">Back Home</Link>
+        </div>
+      </Wrapper>
+    );
   }
   return (
     <Wrapper>
