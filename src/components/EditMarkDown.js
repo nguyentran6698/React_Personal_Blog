@@ -101,14 +101,14 @@ const EditMarkDown = () => {
     })
       .then((res, rej) => {
         editorText.setData("");
+        setEdit((edit) => {
+          return !edit;
+        });
         setCategories([]);
         setPost(initialState);
+        navigate("/blogs");
       })
       .catch((err) => console.log(err.response));
-    setEdit((edit) => {
-      return !edit;
-    });
-    navigate("/blogs");
   };
 
   return (

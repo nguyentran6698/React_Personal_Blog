@@ -7,6 +7,7 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState({ show: false, msg: "" });
+
   const fetchBlogs = async (url) => {
     try {
       setLoading(true);

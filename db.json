@@ -6,7 +6,8 @@
       "public_date": "",
       "featured": true,
       "categories": [
-        "Travel"
+        "Travel",
+        "Education"
       ],
       "image": "https://res.cloudinary.com/do3hzrufo/image/upload/v1651340224/file-upload/tmp-36-1651340223780_w4nazk.png",
       "description": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
@@ -19,7 +20,8 @@
       "categories": [
         "business",
         "travel",
-        "education"
+        "education",
+        "Life Style"
       ],
       "image": "https://res.cloudinary.com/do3hzrufo/image/upload/v1651235386/file-upload/tmp-20-1651235384357_pzpune.webp",
       "description": "Hello and welcome back to TechCrunch’s China roundup, a digest of recent events shaping the Chinese tech landscape and what they mean to people in the rest of the world.",
@@ -184,7 +186,8 @@
       "categories": [
         "Business",
         "Education",
-        "Life Style"
+        "Life Style",
+        "Work"
       ]
     },
     {
