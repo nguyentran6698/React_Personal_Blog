@@ -5,7 +5,9 @@ import Loading from "../components/Loading";
 import BasicPost from "../components/PostTemplate/BasicPost";
 import { devices } from "../styled-components/size";
 import Header from "../components/PostHeaderSlide/BlogPostHeader";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
+import useFetch from "../customHook/useFetch";
+// Testing Purspose
 const mapValueJsonServer = {
   categories: "_like",
   order: "_order",
@@ -15,6 +17,7 @@ const Blogs = () => {
   const { loading, blogs, setQuery } = useGlobalContext();
   const [currentParams, setCurrentParams] = useState({ categories: "all" });
   const [searchParams] = useSearchParams();
+
   useEffect(() => {
     if (currentParams.categories !== "all") {
       let queryParse = Object.keys(currentParams).map((key) => {
@@ -26,6 +29,7 @@ const Blogs = () => {
       setQuery(`http://localhost:3000/posts`);
     }
   }, [currentParams]);
+
   // handle params
   useEffect(() => {
     setCurrentParams({

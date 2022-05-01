@@ -5,7 +5,7 @@ const links = [
     linkTitle: "Home",
   },
   {
-    refLink: "blogs?categories=all",
+    refLink: "blogs",
     linkTitle: "Blogs",
   },
 
