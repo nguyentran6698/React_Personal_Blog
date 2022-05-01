@@ -17,7 +17,7 @@ const mapValueJsonServer = {
 };
 const Blogs = () => {
   const { loading, blogs, setQuery } = useGlobalContext();
-  const [currentParams, setCurrentParams] = useState({ categories: "all" });
+  const [currentParams, setCurrentParams] = useState({});
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
@@ -26,16 +26,14 @@ const Blogs = () => {
         return `${key}${mapValueJsonServer[key]}=${currentParams[key]}`;
       });
       let query = queryParse.join("&");
-      console.log(query);
+
       setQuery(`http://localhost:3000/posts?${query}`);
     } else {
       setQuery(`http://localhost:3000/posts`);
     }
   }, [currentParams]);
-
   // handle params
   useEffect(() => {
-    console.log({ ...Object.fromEntries([...searchParams]) });
     setCurrentParams({
       ...Object.fromEntries([...searchParams]),
     });
@@ -58,7 +56,13 @@ const Blogs = () => {
   return (
     <Wrapper>
       <div className="blogs-container">
-        <h2 className="blogs-heading">{`${currentParams.categories} Posts`}</h2>
+        <h2 className="blogs-heading">{`${
+          currentParams.categories
+            ? currentParams.categories
+            : currentParams.title
+            ? currentParams.title
+            : "all"
+        } ${currentParams.title ? "result" : "posts"}`}</h2>
         {blogs.length > 3 && (
           <div className="blog-header">
             <Header blogs={blogs} />
