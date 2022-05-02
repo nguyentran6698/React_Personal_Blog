@@ -62,7 +62,7 @@ const Blogs = () => {
             : currentParams.title
             ? currentParams.title
             : "all"
-        } ${currentParams.title ? "result" : "posts"}`}</h2>
+        } ${currentParams.title ? "results" : "posts"}`}</h2>
         {blogs.length > 3 && (
           <div className="blog-header">
             <Header blogs={blogs} />
