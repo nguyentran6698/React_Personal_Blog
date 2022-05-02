@@ -6,7 +6,9 @@
       "public_date": "",
       "featured": true,
       "categories": [
-        "Workout"
+        "Workout",
+        "Life Style",
+        "Education"
       ],
       "image": "https://res.cloudinary.com/do3hzrufo/image/upload/v1651340224/file-upload/tmp-36-1651340223780_w4nazk.png",
       "description": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
@@ -171,10 +173,7 @@
       "description": "This is not a joke. I've been trying to become a Google Cloud customer for 9 weeks, but without success. Google support couldn't help. I'm desperate, so hereby I promise to pay you $10 via PayPal if I you can help me to start my Google Cloud trial on https://console.cloud.google.com/freetrial",
       "content": "<h2 style=\"margin-left:0;\">The Error Codes</h2><ul><li>OR-BSBBF-88 (when I try to verify a bank account in GCP)</li><li>OR-RWE-02 (when I try to verify a bank account in Google Pay)</li><li>OR-ACH-04 (for PayPal after returning from successful PayPal login)</li><li>\"Prepaid cards cannot be used.\" in the form that literally says \"credit <strong>or debit</strong> cards\"</li></ul><p style=\"margin-left:0;\">All errors are 100% reproducible with Chrome and Firefox.</p><h2 style=\"margin-left:0;\">Google Support</h2><p style=\"margin-left:0;\">What a disappointment. For some inexplicable reason most support people didn't care about error codes. Even after 2 weeks without any progress and directly asking for the meaning of error codes they just ignored my plea. Is it possible that Google support has no clue what their error codes mean...? I worked with the following support departments:</p><ul><li>Google Cloud</li><li>Google Pay</li><li>Google Play (I think my case was routed there by mistake)</li></ul><p style=\"margin-left:0;\">All of them were just interested in screenshots and gave random suggestions like \"try a different browser\" and \"clear cache\". I did both, but it made no difference. Another disappointment: no support team has access to the other team's cases, so I had to explain everything from the start multiple times. An escalation manager of GCP was contacted, but even that guy told me he cannot help in any way.</p><h2 style=\"margin-left:0;\">Disclaimer</h2><p>This is not rant. I still believe that Google has great software engineers and good products. Especially their cloud offerings are based on a well thought out architecture, which is able to efficiently scale globally. Even though my admiration for Google has suffered a lot, I'd still prefer to use GCP instead of AWS, Azure, or any other cloud.</p>",
       "categories": [
-        "Business",
-        "Education",
-        "Life Style",
-        "Work"
+        "Business"
       ]
     },
     {
