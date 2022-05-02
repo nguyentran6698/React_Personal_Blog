@@ -3,12 +3,16 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useGlobalContext } from "../context";
+import { useSearchParams, useNavigate } from "react-router-dom";
 const Search = () => {
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { query, setQuery } = useGlobalContext();
   const [search, setSearch] = useState("");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setQuery(search);
+    setSearch("");
+    navigate(`/blogs?title=${search}`);
   };
   return (
     <Wrapper>
@@ -20,7 +24,7 @@ const Search = () => {
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search..."
         />
-        {query && (
+        {search && (
           <IoMdClose onClick={() => setSearch("")} className="close-btn" />
         )}
       </form>

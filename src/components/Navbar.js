@@ -52,7 +52,9 @@ const Navbar = () => {
             {socialLinks.map((link, id) => {
               return (
                 <li className="icon" key={id}>
-                  <Link to={`${link.refLink}`}>{link.refIcon}</Link>
+                  <a href={link.refLink} target="_blank">
+                    {link.refIcon}
+                  </a>
                 </li>
               );
             })}

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import dateFormat from "dateformat";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import SelectCategories from "../styled-components/SelectButton";
 // MUI Component
 import { TextField, Button } from "@mui/material";
+import { useGlobalContext } from "../context";
 const testURL = "http://localhost:5000/api/v1/image";
 // const proURL = "https://chau-blog-api-v1.herokuapp.com/api/v1/blogs/uploads";
 const initialState = {
@@ -25,6 +26,7 @@ const generateUniqueId = () => {
 };
 const EditMarkDown = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const editPost = location.state ? location.state.editPost : initialState;
 
   const updateVer = location.state
@@ -37,6 +39,7 @@ const EditMarkDown = () => {
   const [categories, setCategories] = useState([]);
   const [post, setPost] = useState(editPost);
   const [editorText, setEditorContext] = useState(null);
+  const { setEdit } = useGlobalContext();
   const hiddenInput = useRef(null);
   useEffect(() => {
     setPost((post) => {
@@ -98,8 +101,12 @@ const EditMarkDown = () => {
     })
       .then((res, rej) => {
         editorText.setData("");
+        setEdit((edit) => {
+          return !edit;
+        });
         setCategories([]);
         setPost(initialState);
+        navigate("/blogs");
       })
       .catch((err) => console.log(err.response));
   };
