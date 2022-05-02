@@ -2,14 +2,11 @@
   "posts": [
     {
       "id": 19,
-      "title": "Your most unhappy customers are your greatest source of learning.",
+      "title": "Your most happy customers are your greatest source of learning.",
       "public_date": "",
       "featured": true,
       "categories": [
-        "Travel",
-        "Event",
-        "Life Style",
-        "Education"
+        "Workout"
       ],
       "image": "https://res.cloudinary.com/do3hzrufo/image/upload/v1651340224/file-upload/tmp-36-1651340223780_w4nazk.png",
       "description": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
@@ -149,7 +146,10 @@
       "image": "",
       "description": "Local storage is an object in the DOM where you can store data, based on user behavior. When you store data (like a string, number, or boolean) on the localStorage object (as opposed to sessionStorage) it never expires. This is pretty handy since you can store something in the DOM (using the set method), and get that same data (with a future get method) to see if that user had been on the page yet.",
       "content": "<h3 style=\"margin-left:0;\">What is Local Storage?</h3><p style=\"margin-left:0;\">Local storage is an object in the DOM where you can store data, based on user behavior. When you store data (like a string, number, or boolean) on the localStorage object (as opposed to sessionStorage) it <strong>never expires</strong>. This is pretty handy since you can store something in the DOM (using the set method), and get that same data (with a future get method) to see if that user had been on the page yet.</p><h2 style=\"margin-left:0;\">The Use-Case</h2><p style=\"margin-left:0;\">We will assume that there is a toast notification that is triggered when the custom function announceToast() is called in a component. We'll also assume that it's recently been updated with new information.</p><p style=\"margin-left:0;\">In the app.component.ts file, we've initialized a property (to the type of string) to hold a value representing the latest post:<br>&nbsp;</p><pre><code class=\"language-plaintext\">export class AppComponent implements OnInit {\n  currentToast = 'Robots vs. Humans';\n}\n</code></pre><p style=\"margin-left:0;\">&nbsp;</p><p style=\"margin-left:0;\">Now we can check to see if there's an object key in localStorage called blog (to the type of string) by checking when the component initializes:<br>&nbsp;</p><pre><code class=\"language-plaintext\">export class AppComponent implements OnInit {  \n  currentToast = 'Robots vs. Humans';  \n\n  ngOnInit { // When the app initializes\n    // If the localStorage object key 'blog' has a value that does not match the currentToast string\n    if (localStorage.getItem('blog') !== this.currentToast) {\n      // Then we will clear localStorage altogether      \n      localStorage.clear();\n      // We will trigger the new announcement toast      \n      this.announceToast();\n      // And we'll set the 'blog' key to have the new current value      \n      localStorage.setItem('blog', this.currentToast);    \n    }  \n  }\n}\n    // If it does match, then we will do nothing and the value we set will continue to sit in localStorage under that key\n\n</code></pre><p style=\"margin-left:0;\">&nbsp;</p><p style=\"margin-left:0;\">This means, that when we eventually change the value of the currentToast property to something that is NOT 'Robots vs. Humans', the component will automatically evaluate this, clear the object and replace it with the new value (while triggering the new toast).</p><p>Now we only need to update one string to ensure that the user will see a new toast every time (and we don't pollute the localStorage</p>",
-      "categories": []
+      "categories": [
+        "Business",
+        "Education"
+      ]
     },
     {
       "id": 1493519906160,
