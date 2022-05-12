@@ -8,6 +8,8 @@ import SharedBlogLayout from "./Pages/SharedBlogLayout";
 import SingleBlog from "./Pages/SinglePage";
 import ErrorPage from "./Pages/ErrorPage";
 import BlogEdit from "./Pages/BlogEdit";
+import SharedAuthLayout from "./Pages/SharedAuthLayout";
+import Login from "./Authentication/Login";
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +18,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="auth" element={<SharedAuthLayout />}>
+            <Route path="login" element={<Login />} />
+          </Route>
           <Route path="blogs" element={<SharedBlogLayout />}>
             <Route index element={<Blogs />} />
             <Route path="blogEdit" element={<BlogEdit />} />
