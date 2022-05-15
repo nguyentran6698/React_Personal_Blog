@@ -7,8 +7,12 @@ import { devices } from "../styled-components/size";
 import Sidebar from "../components/Sidebar";
 import { FaBars } from "react-icons/fa";
 import { socialLinks, links } from "../styled-components/links";
+import { HiUserCircle } from "react-icons/hi";
+import { auth, signOut } from "../firebase-config";
+import { useGlobalContext } from "../context";
 const Navbar = () => {
   const [sidebar, setSideBar] = useState(false);
+  const { userAuth, setUserAuth } = useGlobalContext();
   const toggleSidebar = () => {
     setSideBar(!sidebar);
   };
@@ -47,6 +51,16 @@ const Navbar = () => {
           <div className="search">
             <Search />
           </div>
+          <div className="auth-section">
+            <HiUserCircle className="icon-user" />
+            <div className="containers">
+              <Link to={`${userAuth ? "/dashboard" : "/auth/login"}`}>{`${
+                userAuth ? "sign out " : "sign in"
+              }`}</Link>
+              <Link to="/blogs/blogEdit">Write Blog</Link>
+              <Link to="/dashboard">dashboard</Link>
+            </div>
+          </div>
           <FaBars className="nav-btn" onClick={toggleSidebar} />
           <ul className="social-icons">
             {socialLinks.map((link, id) => {
@@ -78,7 +92,10 @@ const Wrapper = styled.nav`
   align-items: center;
   .col-1 {
     display: flex;
-    column-gap: 3rem;
+    img {
+      width: 90%;
+    }
+    column-gap: 2rem;
     .logo {
       width: 200px;
     }
@@ -100,7 +117,7 @@ const Wrapper = styled.nav`
   .col-2 {
     display: flex;
     align-items: center;
-    column-gap: 2rem;
+    column-gap: 0.5rem;
     flex-wrap: wrap;
     .social-icons {
       display: none;
@@ -120,19 +137,56 @@ const Wrapper = styled.nav`
       cursor: pointer;
       color: var(--primary-600);
     }
+    .auth-section {
+      display: flex;
+      position: relative;
+      align-items: center;
+      .icon-user {
+        font-size: 2.5rem;
+        color: var(--primary-600);
+      }
+      &:hover .containers {
+        opacity: 1;
+        display: block;
+      }
+      .containers {
+        position: absolute;
+        display: none;
+        transition: var(--fast-transition);
+        opacity: 0;
+        top: 100%;
+        right: -20%;
+        border-radius: var(--borderRadius);
+        width: 120px;
+        padding: 0.75rem 0;
+        text-align: center;
+        background: var(--primary-600);
+        a {
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: var(--letterSpacing);
+          color: var(--white-clr);
+          display: block;
+          margin-bottom: 0.35rem;
+        }
+      }
+    }
   }
   @media ${devices.tablet} {
-    max-width: 1450px;
+    max-width: 1350px;
   }
   @media ${devices.laptop} {
     .col-1 {
+      img {
+        width: 100%;
+      }
       .links {
         display: flex;
       }
     }
     .col-2 {
       .social-icons {
-        display: flex;
       }
       .nav-btn {
         display: none;

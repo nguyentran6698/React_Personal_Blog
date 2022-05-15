@@ -10,6 +10,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import BlogEdit from "./Pages/BlogEdit";
 import SharedAuthLayout from "./Pages/SharedAuthLayout";
 import Login from "./Authentication/Login";
+import AuthProvider from "./Pages/AuthProvider";
+import DashBoard from "./components/DashBoard";
 function App() {
   return (
     <BrowserRouter>
@@ -18,12 +20,27 @@ function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route
+            path="dashboard"
+            element={
+              <AuthProvider>
+                <DashBoard />
+              </AuthProvider>
+            }
+          />
           <Route path="auth" element={<SharedAuthLayout />}>
             <Route path="login" element={<Login />} />
           </Route>
           <Route path="blogs" element={<SharedBlogLayout />}>
             <Route index element={<Blogs />} />
-            <Route path="blogEdit" element={<BlogEdit />} />
+            <Route
+              path="blogEdit"
+              element={
+                <AuthProvider>
+                  <BlogEdit />
+                </AuthProvider>
+              }
+            />
             <Route path=":blogId" element={<SingleBlog />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />

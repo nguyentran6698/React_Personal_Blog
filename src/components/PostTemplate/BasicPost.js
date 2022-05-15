@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
-import dateFormat from "dateformat";
 import notFoundImage from "../../img/notFoundImage.png";
 import { devices } from "../../styled-components/size";
 

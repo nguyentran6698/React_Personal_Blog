@@ -33,6 +33,7 @@ const Search = () => {
 };
 const Wrapper = styled.section`
   border: 0.1px double var(--grey-clr);
+  border-radius: var(--borderRadius);
   form {
     display: flex;
     padding: 0.5rem;

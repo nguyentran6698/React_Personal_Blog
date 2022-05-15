@@ -1,14 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField, FormControl, Typography, Button } from "@mui/material";
+import {
+  auth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "../firebase-config";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useGlobalContext } from "../context";
+import Dashboard from "../components/DashBoard";
 const Login = () => {
-  const [auth, setAuth] = React.useState({ email: "", password: "" });
+  const [message, setMesage] = useState({ type: "", msg: "" });
+  const [userLogin, setUserLogin] = useState({ email: "", password: "" });
+  const { userAuth, setUserAuth } = useGlobalContext();
+  const { state } = useLocation();
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAuth({ ...auth, [name]: value });
+    setUserLogin({ ...userLogin, [name]: value });
   };
-  console.log(auth);
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, userLogin.email, userLogin.password)
+      .then(({ user }) => {
+        setUserAuth({ ...user });
+        setUserLogin({ email: "", password: "" });
+        navigate(state?.path || "/dashboard");
+      })
+      .catch((reject) => {
+        console.log(reject.message);
+      });
+  };
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setUserAuth(user);
+    }
+  });
+  if (userAuth) {
+    return <Dashboard />;
+  }
   return (
     <Wrapper>
       <FormControl fullWidth={true} className="form-control">
@@ -30,18 +60,20 @@ const Login = () => {
           onChange={handleChange}
           name="password"
         />
-        <Button variant="contained">Login</Button>
+        <Button type="submit" variant="contained" onClick={handleSubmit}>
+          Login
+        </Button>
       </FormControl>
     </Wrapper>
   );
 };
 const Wrapper = styled.section`
-  max-width: 1400px;
+  max-width: 1350px;
   .form-control {
     h2 {
-      margin-bottom: 1rem;
+      margin: 1rem 0 0.5rem 0;
     }
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
     display: grid;
     row-gap: 1rem;
