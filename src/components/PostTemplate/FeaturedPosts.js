@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import SinglePostComponent from "./FeaturedPost";
+import SinglePost from "../PostTemplate/BasicPost";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -34,25 +34,10 @@ const FeaturedPosts = () => {
           {
             breakpoint: Number.MAX_SAFE_INTEGER,
             settings: {
-              slidesToShow: 4,
-              slidesToScroll: 1,
-            },
-          },
-          {
-            breakpoint: 1500,
-            settings: {
-              slidesToShow: 4,
-              slidesToScroll: 1,
-            },
-          },
-          {
-            breakpoint: 1300,
-            settings: {
               slidesToShow: 3,
               slidesToScroll: 1,
             },
           },
-
           {
             breakpoint: 1024,
             settings: {
@@ -74,7 +59,7 @@ const FeaturedPosts = () => {
         {featuredBlogs.map((blog, id) => {
           return (
             <div key={id}>
-              <SinglePostComponent blog={blog} />
+              <SinglePost post={blog} left={true} />
             </div>
           );
         })}

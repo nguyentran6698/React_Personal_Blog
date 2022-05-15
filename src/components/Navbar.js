@@ -8,11 +8,10 @@ import Sidebar from "../components/Sidebar";
 import { FaBars } from "react-icons/fa";
 import { socialLinks, links } from "../styled-components/links";
 import { HiUserCircle } from "react-icons/hi";
-import { auth, signOut } from "../firebase-config";
 import { useGlobalContext } from "../context";
 const Navbar = () => {
   const [sidebar, setSideBar] = useState(false);
-  const { userAuth, setUserAuth } = useGlobalContext();
+  const { userAuth } = useGlobalContext();
   const toggleSidebar = () => {
     setSideBar(!sidebar);
   };
@@ -66,7 +65,7 @@ const Navbar = () => {
             {socialLinks.map((link, id) => {
               return (
                 <li className="icon" key={id}>
-                  <a href={link.refLink} target="_blank">
+                  <a href={link.refLink} target="_blank" rel="noreferrer">
                     {link.refIcon}
                   </a>
                 </li>
@@ -155,7 +154,7 @@ const Wrapper = styled.nav`
         transition: var(--fast-transition);
         opacity: 0;
         top: 100%;
-        right: -20%;
+        right: -100%;
         border-radius: var(--borderRadius);
         width: 120px;
         padding: 0.75rem 0;
@@ -175,6 +174,7 @@ const Wrapper = styled.nav`
   }
   @media ${devices.tablet} {
     max-width: 1350px;
+    padding-right: 3.5rem;
   }
   @media ${devices.laptop} {
     .col-1 {

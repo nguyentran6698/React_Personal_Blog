@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import dateFormat from "dateformat";
 import axios from "axios";
 import FormData from "form-data";
 import Editor from "ckeditor5-custom-build/build/ckeditor";
@@ -21,9 +20,6 @@ const initialState = {
   content: "",
   categories: [],
 };
-const generateUniqueId = () => {
-  return Math.floor(Math.random() * Date.now());
-};
 const EditMarkDown = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,22 +38,13 @@ const EditMarkDown = () => {
   const { setEdit } = useGlobalContext();
   const hiddenInput = useRef(null);
   useEffect(() => {
-    setPost((post) => {
-      return {
-        ...post,
-        id: generateUniqueId(),
-        public_date: dateFormat(new Date(), "mmmm dd, yyyy"),
-      };
-    });
-  }, []);
-  useEffect(() => {
-    setPost({ ...editPost });
     if (editPost && editPost.categories) {
       setCategories(editPost.categories);
     }
     if (editorText) {
       editorText.setData(editPost.content);
     }
+    setPost({ ...editPost });
   }, [editPost, editorText]);
   useEffect(() => {
     setPost((oldPost) => {
