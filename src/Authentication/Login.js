@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { useGlobalContext } from "../context";
 import Dashboard from "../components/DashBoard";
 const Login = () => {
-  const [message, setMesage] = useState({ type: "", msg: "" });
+  const [message, setMessage] = useState(false);
   const [userLogin, setUserLogin] = useState({ email: "", password: "" });
   const { userAuth, setUserAuth } = useGlobalContext();
   const { state } = useLocation();
@@ -28,8 +28,13 @@ const Login = () => {
         navigate(state?.path || "/dashboard");
       })
       .catch((reject) => {
-        console.log(reject.message);
+        setMessage(!message);
+        const timeout = setTimeout(() => {
+          setMessage(false);
+        }, 2000);
+        return () => clearTimeout(timeout);
       });
+    setUserLogin({ email: "", password: "" });
   };
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -45,7 +50,9 @@ const Login = () => {
         <Typography variant=" h2" component="h2">
           Login
         </Typography>
-
+        {message && (
+          <p className="messageLogin">Error: Password or Email is Invalid</p>
+        )}
         <TextField
           id="outlined=basic"
           label="Email Address"
@@ -76,7 +83,11 @@ const Wrapper = styled.section`
     width: 50%;
     margin: 0 auto;
     display: grid;
-    row-gap: 1rem;
+    row-gap: 0.75rem;
+    .messageLogin {
+      color: red;
+      margin-bottom: 0.375rem;
+    }
   }
 `;
 export default Login;
