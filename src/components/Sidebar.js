@@ -37,7 +37,7 @@ const Sidebar = ({ toggleSidebar }) => {
   );
 };
 const Wrapper = styled.section`
-  background: var(--primary-500);
+  background: var(--primary-600);
   position: fixed;
   width: 100vw;
   height: 100vh;

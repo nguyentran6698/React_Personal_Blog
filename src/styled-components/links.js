@@ -17,14 +17,6 @@ const links = [
     refLink: "about",
     linkTitle: "About",
   },
-  // {
-  //   refLink: "dashboard",
-  //   linkTitle: "Dashboard",
-  // },
-  // {
-  //   refLink: "/blogs/blogEdit",
-  //   linkTitle: "BlogEdit",
-  // },
 ];
 const socialLinks = [
   {
