@@ -14,6 +14,7 @@ const Button = styled.button`
   border: 0.5px solid var(--black-clr);
   cursor: pointer;
   border-radius: 1.2rem;
+  transition: var(--normal-transition);
   &:hover {
     a {
       color: var(--secondary-800);

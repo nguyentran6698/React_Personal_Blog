@@ -17,7 +17,7 @@ const SinglePage = () => {
       __html: DOMPurify.sanitize(html),
     };
   };
-  const { loading, error, setQuery, blogs } = useGlobalContext();
+  const { loading, error, setQuery, blogs, userAuth } = useGlobalContext();
   if (loading) {
     return <Loading />;
   }
@@ -53,14 +53,16 @@ const SinglePage = () => {
         <Link to="/blogs" className="btn">
           Go Back
         </Link>
-        <Link
-          to={`/blogs/blogEdit`}
-          state={{ editPost: blog }}
-          className="btn"
-          style={{ marginLeft: "1rem" }}
-        >
-          Edit Post
-        </Link>
+        {userAuth && (
+          <Link
+            to={`/blogs/blogEdit`}
+            state={{ editPost: blog }}
+            className="btn"
+            style={{ marginLeft: "1rem" }}
+          >
+            Edit Post
+          </Link>
+        )}
       </div>
     </Wrapper>
   );
