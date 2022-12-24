@@ -28,6 +28,7 @@ const Login = () => {
         navigate(state?.path || "/dashboard");
       })
       .catch((reject) => {
+        console.log(reject);
         setMessage(!message);
         const timeout = setTimeout(() => {
           setMessage(false);
@@ -76,9 +77,10 @@ const Login = () => {
 };
 const Wrapper = styled.section`
   max-width: 1350px;
+  margin: 2.5rem auto;
   .form-control {
     h2 {
-      margin: 1rem 0 0.5rem 0;
+      text-align: center;
     }
     width: 50%;
     margin: 0 auto;
